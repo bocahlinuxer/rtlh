@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DashboardController@index');
+Route::resource('user', 'UserController');
+Route::resource('rtlh', 'RtlhController');
+Route::resource('rtlh/{idrtlh}/fotortlh', 'FotoRtlhController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
