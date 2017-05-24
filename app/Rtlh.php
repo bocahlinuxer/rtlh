@@ -28,8 +28,7 @@ class Rtlh extends Model
         'bukti' => 'required|integer',
         'latitude' => 'required',
         'longitude' => 'required',
-        'data_lainnya' => 'required',
-        'status' => 'required|integer'
+        'data_lainnya' => 'max:255'
     );
 
     public function pekerjaan()

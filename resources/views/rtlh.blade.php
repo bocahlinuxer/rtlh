@@ -48,7 +48,7 @@
             <div class="box-header">
               <h3 class="box-title">
               </h3>
-              <a type="button" class="btn btn-primary" href="{{url('user/create')}}"><i class="fa fa-plus"> Tambah Baru</i></a>
+              <a type="button" class="btn btn-primary" href="{{url('rtlh/create')}}"><i class="fa fa-plus"> Tambah Baru</i></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -58,6 +58,7 @@
                     <th>No</th>
                     <th>Nik</th>
                     <th>Nama</th>
+                    <th>Pekerjaan</th>
                     <th>Alamat</th>
                     <th>Daerah</th>
                     <th>Status</th>
@@ -73,8 +74,9 @@
                     <td>{{ $no }}</td>
                     <td>{{ $r -> nik or '' }}</td>
                     <td>{{ $r -> nama or ''}}</td>
+                    <td>{{ $r -> pekerjaan -> pekerjaan or ''}}</td>
                     <td>{{ $r -> alamat or ''}}</td>
-                    <td></td>
+                    <td>{{ $r -> desa -> kecamatan -> kecamatan.', '.$r -> desa -> desa}}</td>
                     <td>
                       @if($r -> status == 1)
                       Diajukan
@@ -84,7 +86,7 @@
                     </td>
                     <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('rtlh/'.$r->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        <a type="button" class="btn btn-default" href="{{url('rtlh/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
                         {!! Form::open(array('url' => 'rtlh/'.$r->id_rtlh, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}
