@@ -98,6 +98,11 @@
             <i class="fa fa-home"></i> <span>RTLH</span>
           </a>
         </li>
+        <li id="peta-menu">
+          <a href="{{url('peta')}}">
+            <i class="fa fa-map"></i> <span>Peta</span>
+          </a>
+        </li>
         <li class="header">OPTION</li>
         <li>
             <a href="{{ url('logout')}}"
