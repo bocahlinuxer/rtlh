@@ -16,7 +16,9 @@ Route::get('peta', 'MapsController@index');
 Route::resource('user', 'UserController');
 Route::resource('pekerjaan', 'PekerjaanController');
 Route::resource('rtlh', 'RtlhController');
-Route::resource('rtlh/{idrtlh}/fotortlh', 'FotoRtlhController');
+Route::resource('rtlh/{idrtlh}/fotortlh', 'FotoRtlhController', ['except' => [
+    'index'
+]]);
 
 Auth::routes();
 

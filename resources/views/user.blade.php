@@ -55,13 +55,13 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th width="10%">No</th>
-                    <th width="20%">Username</th>
-                    <th width="25%">Nama</th>
-                    <th width="15%">Tgl Input</th>
-                    <th width="15%">Tgl Ubah</th>
-                    <th width="20%">Status</th>
-                    <th width="10%">Opsi</th>
+                    <th>No</th>
+                    <th>Username</th>
+                    <th>Nama</th>
+                    <th>Tgl Input</th>
+                    <th>Tgl Ubah</th>
+                    <th>Status</th>
+                    <th style="width: 10%">Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -102,13 +102,13 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th width="10%">No</th>
-                    <th width="20%">Username</th>
-                    <th width="25%">Nama</th>
-                    <th width="15%">Tgl Input</th>
-                    <th width="15%">Tgl Ubah</th>
-                    <th width="20%">Status</th>
-                    <th width="10%">Opsi</th>
+                    <th>No</th>
+                    <th>Username</th>
+                    <th>Nama</th>
+                    <th>Tgl Input</th>
+                    <th>Tgl Ubah</th>
+                    <th>Status</th>
+                    <th style="width: 10%">Opsi</th>
                   </tr>
                 </tfoot>
               </table>

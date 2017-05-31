@@ -1,5 +1,7 @@
 @extends('template')
 @section('content')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -12,12 +14,27 @@
 
     <!-- Main content -->
     <section class="content">
-      
+      @if(Session::has('msgsave'))
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-success alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">{{Session::get('msgsave')}}</h6>    
+      </div>
+      <!-- /info alert -->
+      @endif
       @if(Session::has('msgedit'))
       <!-- Info alert -->
       <div id="alert" class="alert alert-info alert-styled-left alert-arrow-left alert-component animated shake">
         <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
         <h6 class="alert-heading text-semibold">{{Session::get('msgedit')}}</h6>  
+      </div>
+      <!-- /info alert -->
+      @endif
+      @if(Session::has('msgdelete'))
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-danger alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">{{Session::get('msgdelete')}}</h6>
       </div>
       <!-- /info alert -->
       @endif
@@ -180,10 +197,76 @@
         </div>
       </div>
       <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                Foto RTLH
+              </h3>
+              <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('rtlh'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Tgl Input</th>
+                    <th>Tgl Ubah</th>
+                    <th style="width: 10%">Opsi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @php
+                  $no = 1;
+                @endphp
+                @foreach($rtlh->foto_rtlh as $u)
+                  <tr>
+                    <td>{{ $no }}</td>
+                    <td><img src="{{ $u-> file_fotortlh}}" class="img-responsive"></td>
+                    <td>{{ $u -> created_at or ''}}</td>
+                    <td>{{ $u -> updated_at or ''}}</td>
+                    <td align="center">
+                      <div class="btn-group-vertical">
+                        <a type="button" class="btn btn-default" href="{{url('rtlh'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        {!! Form::open(array('url' => 'rtlh'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh, 'method' => 'delete')) !!}
+                            <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
+                        {!! Form::close() !!}
+                      </div>
+                    </td>
+                  </tr>
+                @php
+                  $no++;
+                @endphp
+                @endforeach
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Tgl Input</th>
+                    <th>Tgl Ubah</th>
+                    <th style="width: 10%">Opsi</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<!-- DataTables -->
+<script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('assets/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 
 <script>
   $(function(){
