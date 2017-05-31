@@ -7,11 +7,11 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Daftar Rumah Tidak Layak Huni
+      <h1>Daftar Pekerjaan
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">RTLH</li>
+        <li class="active">Pekerjaan</li>
       </ol>
     </section>
 
@@ -48,7 +48,7 @@
             <div class="box-header">
               <h3 class="box-title">
               </h3>
-              <a type="button" class="btn btn-primary" href="{{url('rtlh/create')}}"><i class="fa fa-plus"> Tambah Baru</i></a>
+              <a type="button" class="btn btn-primary" href="{{url('pekerjaan/create')}}"><i class="fa fa-plus"> Tambah Baru</i></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -56,12 +56,9 @@
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nik</th>
-                    <th>Nama</th>
                     <th>Pekerjaan</th>
-                    <th>Alamat</th>
-                    <th>Daerah</th>
-                    <th>Status</th>
+                    <th>Tgl Input</th>
+                    <th>Tgl Ubah</th>
                     <th style="width: 10%">Opsi</th>
                   </tr>
                 </thead>
@@ -69,25 +66,16 @@
                 @php
                   $no = 1;
                 @endphp
-                @foreach($rtlh as $r)
+                @foreach($pekerjaan as $u)
                   <tr>
                     <td>{{ $no }}</td>
-                    <td>{{ $r -> nik or '' }}</td>
-                    <td>{{ $r -> nama or ''}}</td>
-                    <td>{{ $r -> pekerjaan -> pekerjaan or ''}}</td>
-                    <td>{{ $r -> alamat or ''}}</td>
-                    <td>{{ $r -> desa -> kecamatan -> kecamatan.', '.$r -> desa -> desa}}</td>
-                    <td>
-                      @if($r -> status == 1)
-                      Diajukan
-                      @elseif($r -> status == 2)
-                      Diverifikasi
-                      @endif
-                    </td>
+                    <td>{{ $u -> pekerjaan or '' }}</td>
+                    <td>{{ $u -> created_at or ''}}</td>
+                    <td>{{ $u -> updated_at or ''}}</td>
                     <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('rtlh/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
-                        {!! Form::open(array('url' => 'rtlh/'.$r->id_rtlh, 'method' => 'delete')) !!}
+                        <a type="button" class="btn btn-default" href="{{url('pekerjaan/'.$u->id_pekerjaan.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        {!! Form::open(array('url' => 'pekerjaan/'.$u->id_pekerjaan, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}
                       </div>
@@ -101,11 +89,9 @@
                 <tfoot>
                   <tr>
                     <th>No</th>
-                    <th>Nik</th>
-                    <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>Daerah</th>
-                    <th>Status</th>
+                    <th>Pekerjaan</th>
+                    <th>Tgl Input</th>
+                    <th>Tgl Ubah</th>
                     <th style="width: 10%">Opsi</th>
                   </tr>
                 </tfoot>
@@ -129,9 +115,17 @@
 
 <script>
   $(function () {
-    $('#rtlh-menu').addClass('active');
+    $('#pekerjaan-menu').addClass('active');
 
     $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
   });
 </script>
 @endsection

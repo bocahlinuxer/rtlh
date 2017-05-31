@@ -92,6 +92,11 @@
             <i class="fa fa-users"></i> <span>Pengguna</span>
           </a>
         </li>
+        <li id="pekerjaan-menu">
+          <a href="{{url('pekerjaan')}}">
+            <i class="fa fa-briefcase"></i> <span>Pekerjaan</span>
+          </a>
+        </li>        
         <li class="header">RTLH</li>
         <li id="rtlh-menu">
           <a href="{{url('rtlh')}}">
