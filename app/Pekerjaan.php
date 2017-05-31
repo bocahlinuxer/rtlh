@@ -12,6 +12,10 @@ class Pekerjaan extends Model
     protected $table = 'pekerjaan';
     public $primaryKey = 'id_pekerjaan';
 
+    public static $rules = array(
+        'pekerjaan' => 'required|max:100'
+    );
+
     public function rtlh()
     {
     	return $this->hasMany('App\Rtlh', 'id_pekerjaan');
