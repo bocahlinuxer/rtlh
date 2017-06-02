@@ -49,6 +49,11 @@
     $('#peta-menu').addClass('active');
 
     var mymap = L.map('mapid').setView([-8.346593, 115.520736], 10);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2ludGVyc2NhbGwiLCJhIjoiY2ozZno5MThsMDI2NjMycDhwZWw0cGNjNSJ9.A2Mgv6pcScFBxcHHI08JxA', {
+      attribution: 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 18
+    }).addTo(mymap);
     
     //inject shp
     var kabupaten = new L.Shapefile('{{asset('shapefile/kabupaten.zip')}}', {
@@ -191,7 +196,7 @@
         "Kabupaten": kabupaten,
         "Kecamatan": kecamatan,
         "Desa": desa,
-        "Fasilitas Umum": desa,
+        "Fasilitas Umum": fasum,
         "Jalan": jalan,
         "Kontur": kontur,
         "Sungai Line": sungailine,
