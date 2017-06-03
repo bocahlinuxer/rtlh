@@ -103,6 +103,9 @@ class RtlhController extends Controller
         $rtlh->nama = $request->nama;
         $rtlh->nik = $request->nik;
         $rtlh->alamat = $request->alamat;
+        $rtlh->jumlah_tanggungan = $request->jumlah_tanggungan;
+        $rtlh->penghasilan = $request->penghasilan;
+        $rtlh->luas_rumah = $request->luas_rumah;
         $rtlh->id_desa = $request->desa;
         $rtlh->id_pekerjaan = $request->pekerjaan;
         $rtlh->kondisi_lantai = $request->kondisi_lantai;
@@ -214,6 +217,9 @@ class RtlhController extends Controller
         $rtlh->nama = $request->nama;
         $rtlh->nik = $request->nik;
         $rtlh->alamat = $request->alamat;
+        $rtlh->jumlah_tanggungan = $request->jumlah_tanggungan;
+        $rtlh->penghasilan = $request->penghasilan;
+        $rtlh->luas_rumah = $request->luas_rumah;
         $rtlh->id_desa = $request->desa;
         $rtlh->id_pekerjaan = $request->pekerjaan;
         $rtlh->kondisi_lantai = $request->kondisi_lantai;
