@@ -17,7 +17,7 @@ Route::resource('user', 'UserController');
 Route::resource('pekerjaan', 'PekerjaanController');
 Route::resource('rtlh', 'RtlhController');
 Route::resource('rtlh/{idrtlh}/fotortlh', 'FotoRtlhController', ['except' => [
-    'index'
+    'index', 'show'
 ]]);
 
 Auth::routes();

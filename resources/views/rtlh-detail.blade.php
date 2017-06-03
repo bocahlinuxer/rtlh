@@ -205,7 +205,7 @@
               <h3 class="box-title">
                 Foto RTLH
               </h3>
-              <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('rtlh'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a>
+              <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('rtlh/'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -226,13 +226,13 @@
                 @foreach($rtlh->foto_rtlh as $u)
                   <tr>
                     <td>{{ $no }}</td>
-                    <td><img src="{{ $u-> file_fotortlh}}" class="img-responsive"></td>
+                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-width: 300px"></td>
                     <td>{{ $u -> created_at or ''}}</td>
                     <td>{{ $u -> updated_at or ''}}</td>
                     <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('rtlh'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
-                        {!! Form::open(array('url' => 'rtlh'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh, 'method' => 'delete')) !!}
+                        <a type="button" class="btn btn-default" href="{{url('rtlh/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        {!! Form::open(array('url' => 'rtlh/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}
                       </div>
