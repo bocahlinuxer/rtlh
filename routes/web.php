@@ -12,6 +12,11 @@
 */
 
 Route::get('/', 'DashboardController@index');
+
+Route::group(['prefix' => 'peta/ajax'], function () {
+	Route::get('peta', 'MapsController@index');    
+});
+
 Route::get('peta', 'MapsController@index');
 Route::resource('user', 'UserController');
 Route::resource('pekerjaan', 'PekerjaanController');
