@@ -160,7 +160,8 @@ class RtlhController extends Controller
                 'desa.kecamatan' => function($q)
                 {
                     $q->select('id_kecamatan', 'kecamatan');
-                }
+                },
+                'foto_rtlh'
             ]
         )->find($id);
         

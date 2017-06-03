@@ -16,6 +16,11 @@ class FotoRtlh extends Model
         'file_fotortlh' => 'required|image'
     );
 
+    public function rtlh()
+    {
+        return $this->belongsTo('App\Rtlh', 'id_rtlh');
+    }
+
     public function created_by_user()
     {
         return $this->belongsTo('App\User', 'created_by');
