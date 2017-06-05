@@ -14,7 +14,7 @@
 Route::get('/', 'DashboardController@index');
 
 Route::group(['prefix' => 'peta/ajax'], function () {
-	Route::get('peta', 'MapsController@index');    
+	Route::get('rumah', 'MapsController@ajax_rumah');    
 });
 
 Route::get('peta', 'MapsController@index');
