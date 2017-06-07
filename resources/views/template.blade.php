@@ -66,13 +66,13 @@
         <div class="pull-left info">
           <p>{{Auth::user()->nama}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> 
-          @if(Auth::user()->status == 1)
+          @if(Auth::user()->tipe == 1)
           Super Admin
-          @elseif(Auth::user()->status == 2)
+          @elseif(Auth::user()->tipe == 2)
           Admin Perbekel
-          @elseif(Auth::user()->status == 3)
+          @elseif(Auth::user()->tipe == 3)
           Admin Verifikasi
-          @elseif(Auth::user()->status == 4)
+          @elseif(Auth::user()->tipe == 4)
           Admin Kepala
           @endif
           </a>

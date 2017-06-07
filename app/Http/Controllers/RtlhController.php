@@ -30,34 +30,7 @@ class RtlhController extends Controller
      */
     public function index()
     {
-        $rtlh = Rtlh::with(
-            [
-                'created_by_user' => function($q)
-                {
-                    $q->select('id_user', 'nama');
-                },
-                'updated_by_user' => function($q)
-                {
-                    $q->select('id_user', 'nama');
-                },
-                'verified_by_user' => function($q)
-                {
-                    $q->select('id_user', 'nama');
-                },
-                'pekerjaan' => function($q)
-                {
-                    $q->select('id_pekerjaan', 'pekerjaan');
-                },
-                'desa' => function($q)
-                {
-                    $q->select('id_desa', 'desa', 'id_kecamatan');
-                },
-                'desa.kecamatan' => function($q)
-                {
-                    $q->select('id_kecamatan', 'kecamatan');
-                }
-            ]
-        )->where('status', '<>', 0)->get();
+        $rtlh = Rtlh::getRtlh();
         
         return view('rtlh')->with('rtlh', $rtlh);
     }
@@ -98,36 +71,14 @@ class RtlhController extends Controller
         //ambil user yang login
         $userlogin = Auth::user();
 
-        //buat variable user
-        $rtlh = new Rtlh;
-        $rtlh->nama = $request->nama;
-        $rtlh->nik = $request->nik;
-        $rtlh->alamat = $request->alamat;
-        $rtlh->jumlah_tanggungan = $request->jumlah_tanggungan;
-        $rtlh->penghasilan = $request->penghasilan;
-        $rtlh->luas_rumah = $request->luas_rumah;
-        $rtlh->id_desa = $request->desa;
-        $rtlh->id_pekerjaan = $request->pekerjaan;
-        $rtlh->kondisi_lantai = $request->kondisi_lantai;
-        $rtlh->kondisi_atap = $request->kondisi_atap;
-        $rtlh->kondisi_dinding = $request->kondisi_dinding;
-        $rtlh->utilitas_air = $request->utilitas_air;
-        $rtlh->utilitas_listrik = $request->utilitas_listrik;
-        $rtlh->utilitas_mck = $request->utilitas_mck;
-        $rtlh->bukti = $request->bukti;
-        $rtlh->latitude = $request->latitude;
-        $rtlh->longitude = $request->longitude;
-        $rtlh->data_lainnya = $request->data_lainnya;
-        $rtlh->status = 1;
-
-        //set created by
-        $rtlh->created_by_user()->associate($userlogin);
-
-        //simpan user baru
-        $rtlh->save();
-
-        Session::flash('msgsave', 'Tambah RTLH berhasil');
-        return redirect('rtlh');
+        if(Rtlh::saveRtlh($userlogin, $request))
+        {
+            Session::flash('msgsave', 'Tambah RTLH berhasil');
+        }
+        else
+        {
+            Session::flash('msgdelete', 'Tambah RTLH gagal');
+        }
     }
 
     /**
@@ -138,35 +89,7 @@ class RtlhController extends Controller
      */
     public function show($id)
     {
-        $rtlh = Rtlh::with(
-            [
-                'created_by_user' => function($q)
-                {
-                    $q->select('id_user', 'nama');
-                },
-                'updated_by_user' => function($q)
-                {
-                    $q->select('id_user', 'nama');
-                },
-                'verified_by_user' => function($q)
-                {
-                    $q->select('id_user', 'nama');
-                },
-                'pekerjaan' => function($q)
-                {
-                    $q->select('id_pekerjaan', 'pekerjaan');
-                },
-                'desa' => function($q)
-                {
-                    $q->select('id_desa', 'desa', 'id_kecamatan');
-                },
-                'desa.kecamatan' => function($q)
-                {
-                    $q->select('id_kecamatan', 'kecamatan');
-                },
-                'foto_rtlh'
-            ]
-        )->find($id);
+        $rtlh = Rtlh::getRtlhDetail($id);
         
         return view('rtlh-detail')->with('rtlh', $rtlh);
     }
@@ -212,34 +135,8 @@ class RtlhController extends Controller
         //ambil user yang login
         $userlogin = Auth::user();
 
-        //buat variable user
-        $rtlh = Rtlh::find($id);
-        $rtlh->nama = $request->nama;
-        $rtlh->nik = $request->nik;
-        $rtlh->alamat = $request->alamat;
-        $rtlh->jumlah_tanggungan = $request->jumlah_tanggungan;
-        $rtlh->penghasilan = $request->penghasilan;
-        $rtlh->luas_rumah = $request->luas_rumah;
-        $rtlh->id_desa = $request->desa;
-        $rtlh->id_pekerjaan = $request->pekerjaan;
-        $rtlh->kondisi_lantai = $request->kondisi_lantai;
-        $rtlh->kondisi_atap = $request->kondisi_atap;
-        $rtlh->kondisi_dinding = $request->kondisi_dinding;
-        $rtlh->utilitas_air = $request->utilitas_air;
-        $rtlh->utilitas_listrik = $request->utilitas_listrik;
-        $rtlh->utilitas_mck = $request->utilitas_mck;
-        $rtlh->bukti = $request->bukti;
-        $rtlh->latitude = $request->latitude;
-        $rtlh->longitude = $request->longitude;
-        $rtlh->data_lainnya = $request->data_lainnya;
-
-        //set created by
-        $rtlh->updated_by_user()->associate($userlogin);
-
-        //simpan user baru
-        $rtlh->save();
-
-        Session::flash('msgedit', 'Ubah RTLH berhasil');
+        $rtlh = Rtlh::updateRtlh($userlogin, $id, $request);
+        
         return redirect('rtlh/'.$rtlh->id_rtlh);
     }
 
@@ -254,17 +151,13 @@ class RtlhController extends Controller
         //ambil user yang login
         $userlogin = Auth::user();
 
-        //buat variable user
-        $rtlh = Rtlh::find($id);
-        $rtlh->status = 0;
-
-        //set created by
-        $rtlh->updated_by_user()->associate($userlogin);
-
-        //simpan user baru
-        $rtlh->save();
-
-        Session::flash('msgdelete', 'Hapus RTLH berhasil');
-        return redirect('rtlh');
+        if(Rtlh::deleteRtlh($userlogin, $id))
+        {
+            Session::flash('msgdelete', 'Hapus RTLH berhasil');
+        }
+        else
+        {
+            Session::flash('msgdelete', 'Hapus RTLH gagal');
+        }
     }
 }

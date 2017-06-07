@@ -15,10 +15,15 @@ Route::get('/', 'DashboardController@index');
 Route::get('peta', 'MapsController@index');
 Route::resource('user', 'UserController');
 Route::resource('pekerjaan', 'PekerjaanController');
+Route::resource('pengajuan', 'PengajuanController');
 Route::resource('rtlh', 'RtlhController');
 Route::resource('rtlh/{idrtlh}/fotortlh', 'FotoRtlhController', ['except' => [
     'index', 'show'
 ]]);
+
+Route::group(['prefix' => 'admin'], function () {
+    
+});
 
 Auth::routes();
 
