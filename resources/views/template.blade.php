@@ -86,6 +86,7 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+        @if(Auth::user()->tipe == 1)
         <li class="header">MASTER DATA</li>
         <li id="user-menu">
           <a href="{{url('user')}}">
@@ -96,13 +97,37 @@
           <a href="{{url('pekerjaan')}}">
             <i class="fa fa-briefcase"></i> <span>Pekerjaan</span>
           </a>
-        </li>        
+        </li> 
+        @endif
         <li class="header">RTLH</li>
+        @if(Auth::user()->tipe == 1)
         <li id="rtlh-menu">
           <a href="{{url('rtlh')}}">
             <i class="fa fa-home"></i> <span>RTLH</span>
           </a>
         </li>
+        @endif
+        @if(Auth::user()->tipe == 2)
+        <li id="pengajuan-menu">
+          <a href="{{url('pengajuan')}}">
+            <i class="fa fa-home"></i> <span>Pengajuan RTLH</span>
+          </a>
+        </li>
+        @endif
+        @if(Auth::user()->tipe == 3)
+        <li id="verifikasi-menu">
+          <a href="{{url('verifikasi')}}">
+            <i class="fa fa-home"></i> <span>Verifikasi RTLH</span>
+          </a>
+        </li>
+        @endif
+        @if(Auth::user()->tipe == 3)
+        <li id="terverifikasi-menu">
+          <a href="{{url('terverifikasi')}}">
+            <i class="fa fa-home"></i> <span>RTLH Terverifikasi</span>
+          </a>
+        </li>
+        @endif
         <li id="peta-menu">
           <a href="{{url('peta')}}">
             <i class="fa fa-map"></i> <span>Peta</span>

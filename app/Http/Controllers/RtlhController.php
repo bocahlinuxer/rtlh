@@ -21,6 +21,7 @@ class RtlhController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('superadmin');
     }
 
     /**
@@ -254,6 +255,8 @@ class RtlhController extends Controller
         $userlogin = Auth::user();
 
         $rtlh = Rtlh::find($id);
+
+        //soft deleting
         $rtlh->status = 0;
 
         //set created by

@@ -59,7 +59,7 @@ class PengajuanController extends Controller
             ]
         )->where('status', '<>', 0)->where('created_by', Auth::user()->id_user)->get();
         
-        return view('rtlh')->with('rtlh', $rtlh);
+        return view('pengajuan')->with('rtlh', $rtlh);
     }
 
     /**
@@ -71,7 +71,7 @@ class PengajuanController extends Controller
     {
         $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
-        return view('rtlh-create')->with(array(
+        return view('pengajuan-create')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan
             ));
@@ -89,7 +89,7 @@ class PengajuanController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('rtlh/create')
+            return redirect('pengajuan/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -126,8 +126,8 @@ class PengajuanController extends Controller
         //simpan user baru
         $rtlh->save();
 
-        Session::flash('msgsave', 'Tambah RTLH berhasil');
-        return redirect('rtlh');
+        Session::flash('msgsave', 'Pengajuan RTLH berhasil');
+        return redirect('pengajuan');
     }
 
     /**
@@ -167,8 +167,10 @@ class PengajuanController extends Controller
                 'foto_rtlh'
             ]
         )->find($id);
-        
-        return view('rtlh-detail')->with('rtlh', $rtlh);
+
+        $this->authorize('view', $rtlh);
+
+        return view('pengajuan-detail')->with('rtlh', $rtlh);
     }
 
     /**
@@ -183,7 +185,9 @@ class PengajuanController extends Controller
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
         $rtlh = Rtlh::find($id);
 
-        return view('rtlh-edit')->with(array(
+        $this->authorize('view', $rtlh);
+
+        return view('pengajuan-edit')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan,
             "rtlh" => $rtlh
@@ -203,7 +207,7 @@ class PengajuanController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('rtlh/'.$id.'/edit')
+            return redirect('pengajuan/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -214,6 +218,9 @@ class PengajuanController extends Controller
 
         //buat variable user
         $rtlh = Rtlh::find($id);
+
+        $this->authorize('update', $rtlh);
+
         $rtlh->nama = $request->nama;
         $rtlh->nik = $request->nik;
         $rtlh->alamat = $request->alamat;
@@ -239,8 +246,8 @@ class PengajuanController extends Controller
         //simpan user baru
         $rtlh->save();
 
-        Session::flash('msgedit', 'Ubah RTLH berhasil');
-        return redirect('rtlh/'.$rtlh->id_rtlh);
+        Session::flash('msgedit', 'Ubah pengajuan RTLH berhasil');
+        return redirect('pengajuan/'.$rtlh->id_rtlh);
     }
 
     /**
@@ -256,6 +263,9 @@ class PengajuanController extends Controller
 
         //buat variable user
         $rtlh = Rtlh::find($id);
+
+        $this->authorize('delete', $rtlh);
+        
         $rtlh->status = 0;
 
         //set created by
@@ -264,7 +274,7 @@ class PengajuanController extends Controller
         //simpan user baru
         $rtlh->save();
 
-        Session::flash('msgdelete', 'Hapus RTLH berhasil');
-        return redirect('rtlh');
+        Session::flash('msgdelete', 'Hapus pengajuan RTLH berhasil');
+        return redirect('pengajuan');
     }
 }
