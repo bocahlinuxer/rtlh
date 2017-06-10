@@ -57,6 +57,9 @@
                     <td align="center">
                       <div class="btn-group-vertical">
                         <a type="button" class="btn btn-default" href="{{url('terverifikasi/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
+                        @if(Auth::user()->tipe == 4)
+                        <a type="button" class="btn btn-success" href="{{url('terverifikasi/'.$r->id_rtlh.'/penanganan')}}"><i class="fa fa-eye"> Penanganan</i></a>
+                        @endif
                         {{-- {!! Form::open(array('url' => 'pengajuan/'.$r->id_rtlh, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!} --}}

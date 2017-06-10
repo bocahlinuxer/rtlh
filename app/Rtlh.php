@@ -46,6 +46,11 @@ class Rtlh extends Model
     	return $this->hasMany('App\FotoRtlh', 'id_rtlh');
     }
 
+    public function penanganan()
+    {
+        return $this->hasMany('App\Penanganan', 'id_rtlh');
+    }
+
     public function created_by_user()
     {
         return $this->belongsTo('App\User', 'created_by');
