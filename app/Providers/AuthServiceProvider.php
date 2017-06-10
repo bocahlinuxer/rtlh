@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Rtlh;
+use App\Policies\RtlhPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        Rtlh::class => RtlhPolicy::class,
+        FotoRtlh::class => FotoPolicy::class,
+        Pekerjaan::class => PekerjaanPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**
@@ -25,6 +30,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
     }
 }

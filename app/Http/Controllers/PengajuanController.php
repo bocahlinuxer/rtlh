@@ -11,7 +11,7 @@ use App\Pekerjaan;
 use App\Kecamatan;
 use Auth;
 
-class RtlhController extends Controller
+class PengajuanController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,7 +21,6 @@ class RtlhController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('superadmin');
     }
 
     /**
@@ -58,9 +57,9 @@ class RtlhController extends Controller
                     $q->select('id_kecamatan', 'kecamatan');
                 }
             ]
-        )->where('status', '<>', 0)->get();
+        )->where('status', '<>', 0)->where('created_by', Auth::user()->id_user)->get();
         
-        return view('rtlh')->with('rtlh', $rtlh);
+        return view('pengajuan')->with('rtlh', $rtlh);
     }
 
     /**
@@ -72,7 +71,7 @@ class RtlhController extends Controller
     {
         $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
-        return view('rtlh-create')->with(array(
+        return view('pengajuan-create')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan
             ));
@@ -90,7 +89,7 @@ class RtlhController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('rtlh/create')
+            return redirect('pengajuan/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -99,6 +98,7 @@ class RtlhController extends Controller
         //ambil user yang login
         $userlogin = Auth::user();
 
+        //buat variable user
         $rtlh = new Rtlh;
         $rtlh->nama = $request->nama;
         $rtlh->nik = $request->nik;
@@ -126,8 +126,8 @@ class RtlhController extends Controller
         //simpan user baru
         $rtlh->save();
 
-        return redirect('rtlh');
-        Session::flash('msgsave', 'Tambah RTLH berhasil');
+        Session::flash('msgsave', 'Pengajuan RTLH berhasil');
+        return redirect('pengajuan');
     }
 
     /**
@@ -167,8 +167,10 @@ class RtlhController extends Controller
                 'foto_rtlh'
             ]
         )->find($id);
-        
-        return view('rtlh-detail')->with('rtlh', $rtlh);
+
+        $this->authorize('view', $rtlh);
+
+        return view('pengajuan-detail')->with('rtlh', $rtlh);
     }
 
     /**
@@ -183,7 +185,9 @@ class RtlhController extends Controller
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
         $rtlh = Rtlh::find($id);
 
-        return view('rtlh-edit')->with(array(
+        $this->authorize('view', $rtlh);
+
+        return view('pengajuan-edit')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan,
             "rtlh" => $rtlh
@@ -203,7 +207,7 @@ class RtlhController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('rtlh/'.$id.'/edit')
+            return redirect('pengajuan/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -212,7 +216,10 @@ class RtlhController extends Controller
         //ambil user yang login
         $userlogin = Auth::user();
 
+        //buat variable user
         $rtlh = Rtlh::find($id);
+
+        $this->authorize('update', $rtlh);
 
         $rtlh->nama = $request->nama;
         $rtlh->nik = $request->nik;
@@ -239,8 +246,8 @@ class RtlhController extends Controller
         //simpan user baru
         $rtlh->save();
 
-        Session::flash('msgedit', 'Ubah RTLH berhasil');
-        return redirect('rtlh/'.$rtlh->id_rtlh);
+        Session::flash('msgedit', 'Ubah pengajuan RTLH berhasil');
+        return redirect('pengajuan/'.$rtlh->id_rtlh);
     }
 
     /**
@@ -254,9 +261,11 @@ class RtlhController extends Controller
         //ambil user yang login
         $userlogin = Auth::user();
 
+        //buat variable user
         $rtlh = Rtlh::find($id);
 
-        //soft deleting
+        $this->authorize('delete', $rtlh);
+        
         $rtlh->status = 0;
 
         //set created by
@@ -265,7 +274,7 @@ class RtlhController extends Controller
         //simpan user baru
         $rtlh->save();
 
-        Session::flash('msgdelete', 'Hapus RTLH berhasil');
-        return redirect('rtlh');
+        Session::flash('msgdelete', 'Hapus pengajuan RTLH berhasil');
+        return redirect('pengajuan');
     }
 }
