@@ -121,10 +121,17 @@
           </a>
         </li>
         @endif
-        @if(Auth::user()->tipe == 3)
+        @if(Auth::user()->tipe == 3 || Auth::user()->tipe == 4)
         <li id="terverifikasi-menu">
           <a href="{{url('terverifikasi')}}">
             <i class="fa fa-home"></i> <span>RTLH Terverifikasi</span>
+          </a>
+        </li>
+        @endif
+        @if(Auth::user()->tipe == 4)
+        <li id="rekap-menu">
+          <a href="{{url('rekap')}}">
+            <i class="fa fa-home"></i> <span>Rekap Penanganan RTLH</span>
           </a>
         </li>
         @endif

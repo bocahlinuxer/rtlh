@@ -34,6 +34,10 @@ Route::put('verifikasi/{id}', 'VerifikasiController@verifikasi');
 Route::get('terverifikasi', 'VerifikasiController@sudah');
 Route::get('terverifikasi/{id}', 'VerifikasiController@detailsudah');
 
+Route::resource('terverifikasi/{idrtlh}/penanganan', 'PenangananController');
+
+Route::get('rekap', 'PenangananController@rekap');
+
 Route::group(['prefix' => 'admin'], function () {
     
 });
