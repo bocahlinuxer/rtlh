@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Rtlh;
+
 class MapsController extends Controller
 {
 	/**
@@ -23,6 +25,13 @@ class MapsController extends Controller
      */
     public function index()
     {
-        return view('maps');
+        return view('mapsgson');
+    }
+
+    public function ajax_rumah()
+    {
+        $rumah = Rtlh::where('status', '<>' , 0)->get();
+
+        return json_encode($rumah);
     }
 }
