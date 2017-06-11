@@ -187,13 +187,13 @@
             <div class="radio">
               <label>
                 <input type="radio" name="utilitas_listrik" value="1" checked>
-                Layak
+                Ada
               </label>
             </div>
             <div class="radio">
               <label>
                 <input type="radio" name="utilitas_listrik" value="0">
-                Tidak Layak
+                Tidak Ada
               </label>
             </div>
           </div>
@@ -205,13 +205,13 @@
             <div class="radio">
               <label>
                 <input type="radio" name="utilitas_air" value="1" checked>
-                Layak
+                Ada
               </label>
             </div>
             <div class="radio">
               <label>
                 <input type="radio" name="utilitas_air" value="0">
-                Tidak Layak
+                Tidak Ada
               </label>
             </div>
           </div>
@@ -223,13 +223,13 @@
             <div class="radio">
               <label>
                 <input type="radio" name="utilitas_mck" value="1" checked>
-                Layak
+                Ada
               </label>
             </div>
             <div class="radio">
               <label>
                 <input type="radio" name="utilitas_mck" value="0">
-                Tidak Layak
+                Tidak Ada
               </label>
             </div>
           </div>
