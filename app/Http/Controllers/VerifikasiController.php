@@ -58,7 +58,7 @@ class VerifikasiController extends Controller
             ]
         )->where('status', '=', 1)->get();
         
-        return view('verifikasi-belum')->with('rtlh', $rtlh);
+        return view('admin.verifikasi-belum')->with('rtlh', $rtlh);
     }
 
     /**
@@ -101,11 +101,11 @@ class VerifikasiController extends Controller
 
         if($rtlh != null)
         {
-        	return view('verifikasi-detail')->with('rtlh', $rtlh);
+        	return view('admin.verifikasi-detail')->with('rtlh', $rtlh);
         }
         else
         {
-        	return view('errors/204');
+        	return view('admin.errors/204');
         }
     }
 
@@ -173,7 +173,7 @@ class VerifikasiController extends Controller
             ]
         )->where('status', '=', 2)->get();
         
-        return view('verifikasi-sudah')->with('rtlh', $rtlh);
+        return view('admin.verifikasi-sudah')->with('rtlh', $rtlh);
     }
 
     /**
@@ -216,11 +216,11 @@ class VerifikasiController extends Controller
 
         if($rtlh != null)
         {
-        	return view('verifikasi-sudah-detail')->with('rtlh', $rtlh);
+        	return view('admin.verifikasi-sudah-detail')->with('rtlh', $rtlh);
         }
         else
         {
-        	return view('errors/204');
+        	return view('admin.errors/204');
         }
     }
 }

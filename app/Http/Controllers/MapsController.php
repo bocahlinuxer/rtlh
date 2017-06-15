@@ -25,7 +25,7 @@ class MapsController extends Controller
      */
     public function index()
     {
-        return view('mapsgson');
+        return view('admin.mapsgson');
     }
 
     public function ajax_rumah()

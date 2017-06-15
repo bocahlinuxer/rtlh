@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 
 <link rel="stylesheet" href="{{asset('leaflet/leaflet.css')}}">
@@ -10,7 +10,7 @@
       <h1>Peta Rumah Tidak Layak Huni
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{url('admin//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active">Peta</li>
       </ol>
     </section>
@@ -160,7 +160,7 @@
       control.addOverlay(jalan, "Jalan");
     });
 
-    $.getJSON("{{url('peta/ajax/rumah')}}",function(data){
+    $.getJSON("{{url('admin/peta/ajax/rumah')}}",function(data){
       var markers = [];
       $.each(data, function(key, value){
         markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)]).bindPopup(value.nama));

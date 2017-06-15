@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 
 <div class="content-wrapper">
@@ -8,8 +8,8 @@
       Ubah Penanganan
     </h1>
     <ol class="breadcrumb">
-      <li><a href="{{url('')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{url('terverifikasi/'.$idrtlh.'/penanganan')}}">Penanganan</a></li>
+      <li><a href="{{url('admin/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li><a href="{{url('admin/terverifikasi/'.$idrtlh.'/penanganan')}}">Penanganan</a></li>
       <li class="active">Ubah</li>
     </ol>
   </section>
@@ -17,7 +17,7 @@
   <!-- Main content -->
   <section class="content">
     <!-- Default box -->
-    {!! Form::open(array('url' => url('terverifikasi/'.$idrtlh.'/penanganan/'.$id), 'role' => 'form', 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
+    {!! Form::open(array('url' => url('admin/terverifikasi/'.$idrtlh.'/penanganan/'.$id), 'role' => 'form', 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
       <div class="box box-success" style="width: 50%">
         <div class="box-header with-border">
           <h3 class="box-title">Form Penanganan</h3>
@@ -64,7 +64,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <a type="button" class="btn btn-danger" href="{{url('terverifikasi/'.$idrtlh.'/penanganan')}}">Kembali</a>
+          <a type="button" class="btn btn-danger" href="{{url('admin/terverifikasi/'.$idrtlh.'/penanganan')}}">Kembali</a>
           <button type="submit" class="btn btn-primary pull-right">Simpan</button>
         </div>
       </div>

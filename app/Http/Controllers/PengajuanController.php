@@ -59,7 +59,7 @@ class PengajuanController extends Controller
             ]
         )->where('status', '<>', 0)->where('created_by', Auth::user()->id_user)->get();
         
-        return view('pengajuan')->with('rtlh', $rtlh);
+        return view('admin.pengajuan')->with('rtlh', $rtlh);
     }
 
     /**
@@ -71,7 +71,7 @@ class PengajuanController extends Controller
     {
         $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
-        return view('pengajuan-create')->with(array(
+        return view('admin.pengajuan-create')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan
             ));
@@ -170,7 +170,7 @@ class PengajuanController extends Controller
 
         $this->authorize('view', $rtlh);
 
-        return view('pengajuan-detail')->with('rtlh', $rtlh);
+        return view('admin.pengajuan-detail')->with('rtlh', $rtlh);
     }
 
     /**
@@ -187,7 +187,7 @@ class PengajuanController extends Controller
 
         $this->authorize('view', $rtlh);
 
-        return view('pengajuan-edit')->with(array(
+        return view('admin.pengajuan-edit')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan,
             "rtlh" => $rtlh

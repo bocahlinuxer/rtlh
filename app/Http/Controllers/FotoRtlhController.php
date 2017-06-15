@@ -32,7 +32,7 @@ class FotoRtlhController extends Controller
      */
     public function create($idrtlh)
     {
-        return view('fotortlh-create')->with('idrtlh', $idrtlh);
+        return view('admin.fotortlh-create')->with('idrtlh', $idrtlh);
     }
 
     /**
@@ -100,7 +100,7 @@ class FotoRtlhController extends Controller
      */
     public function edit($idrtlh, $id)
     {
-        return view('fotortlh-edit')->with(array(
+        return view('admin.fotortlh-edit')->with(array(
             'idrtlh' => $idrtlh,
             'id' => $id
             ));

@@ -31,7 +31,7 @@ class PengajuanFotoController extends Controller
      */
     public function create($idrtlh)
     {
-        return view('pengajuanfoto-create')->with('idrtlh', $idrtlh);
+        return view('admin.pengajuanfoto-create')->with('idrtlh', $idrtlh);
     }
 
     /**
@@ -99,7 +99,7 @@ class PengajuanFotoController extends Controller
      */
     public function edit($idrtlh, $id)
     {
-        return view('pengajuanfoto-edit')->with(array(
+        return view('admin.pengajuanfoto-edit')->with(array(
             'idrtlh' => $idrtlh,
             'id' => $id
             ));

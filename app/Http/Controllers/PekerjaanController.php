@@ -44,7 +44,7 @@ class PekerjaanController extends Controller
         
         //buat ngetes
         //return json_encode($pekerjaans);
-        return view('pekerjaan')->with('pekerjaan', $pekerjaan);
+        return view('admin.pekerjaan')->with('pekerjaan', $pekerjaan);
     }
 
     /**
@@ -54,7 +54,7 @@ class PekerjaanController extends Controller
      */
     public function create()
     {
-        return view('pekerjaan-create');
+        return view('admin.pekerjaan-create');
     }
 
     /**
@@ -126,7 +126,7 @@ class PekerjaanController extends Controller
             ]
         )->get()->find($id);
 
-        return view('pekerjaan-edit')->with('pekerjaan', $pekerjaan);
+        return view('admin.pekerjaan-edit')->with('pekerjaan', $pekerjaan);
     }
 
     /**

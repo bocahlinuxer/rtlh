@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 
 <link rel="stylesheet" href="{{asset('leaflet/leaflet.css')}}">
@@ -10,7 +10,7 @@
       <h1>Peta Rumah Tidak Layak Huni
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{url('admin//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active">Peta</li>
       </ol>
     </section>

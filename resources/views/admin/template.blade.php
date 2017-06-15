@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{asset('assets/dist/css/AdminLTE.min.css')}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{asset('assets/dist/css/skins/skin-purple.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/dist/css/skins/skin-red.min.css')}}">
 
   <!-- jQuery 3.1.1 -->
   <script src="{{asset('assets/plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
@@ -33,17 +33,17 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{url('')}}" class="logo">
+    <a href="{{url('admin/')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>e-</b>R</span>
+      <span class="logo-mini"><b>e-</b>RTLH</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>e-</b>RTLH</span>
+      <span class="logo-lg"><b>e-</b>RTLH Admin</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -58,41 +58,100 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{asset('assets/dist/img/user2-160x160b.jpg')}}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>{{Auth::user()->nama}}</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> 
+          @if(Auth::user()->tipe == 1)
+          Super Admin
+          @elseif(Auth::user()->tipe == 2)
+          Admin Perbekel
+          @elseif(Auth::user()->tipe == 3)
+          Admin Verifikasi
+          @elseif(Auth::user()->tipe == 4)
+          Admin Kepala
+          @endif
+          </a>
+        </div>
+      </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
-        <li id="beranda-menu">
-          <a href="{{url('')}}">
-            <i class="fa fa-dashboard"></i> <span>Beranda</span>
+        <li id="dashboard-menu">
+          <a href="{{url('admin/')}}">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li id="kontak-menu">
-          <a href="{{url('')}}">
-            <i class="fa fa-dashboard"></i> <span>Kontak</span>
+        @if(Auth::user()->tipe == 1)
+        <li class="header">MASTER DATA</li>
+        <li id="user-menu">
+          <a href="{{url('admin/user')}}">
+            <i class="fa fa-users"></i> <span>Pengguna</span>
           </a>
         </li>
+        <li id="pekerjaan-menu">
+          <a href="{{url('admin/pekerjaan')}}">
+            <i class="fa fa-briefcase"></i> <span>Pekerjaan</span>
+          </a>
+        </li> 
+        @endif
         <li class="header">RTLH</li>
+        @if(Auth::user()->tipe == 1)
         <li id="rtlh-menu">
-          <a href="{{url('')}}">
-            <i class="fa fa-home"></i> <span>Data RTLH</span>
+          <a href="{{url('admin/rtlh')}}">
+            <i class="fa fa-home"></i> <span>RTLH</span>
           </a>
         </li>
-        <li id="program-menu">
-          <a href="{{url('')}}">
-            <i class="fa fa-home"></i> <span>Program</span>
+        @endif
+        @if(Auth::user()->tipe == 2)
+        <li id="pengajuan-menu">
+          <a href="{{url('admin/pengajuan')}}">
+            <i class="fa fa-home"></i> <span>Pengajuan RTLH</span>
           </a>
         </li>
-        <li id="lokasi-menu">
-          <a href="{{url('')}}">
-            <i class="fa fa-home"></i> <span>Lokasi</span>
+        @endif
+        @if(Auth::user()->tipe == 3)
+        <li id="verifikasi-menu">
+          <a href="{{url('admin/verifikasi')}}">
+            <i class="fa fa-home"></i> <span>Verifikasi RTLH</span>
           </a>
         </li>
-        <li class="header">Login</li>
-        <li id="login-menu">
-          <a href="{{url('')}}">
-            <i class="fa fa-home"></i> <span>Login</span>
+        @endif
+        @if(Auth::user()->tipe == 3 || Auth::user()->tipe == 4)
+        <li id="terverifikasi-menu">
+          <a href="{{url('admin/terverifikasi')}}">
+            <i class="fa fa-home"></i> <span>RTLH Terverifikasi</span>
           </a>
         </li>
+        @endif
+        @if(Auth::user()->tipe == 4)
+        <li id="rekap-menu">
+          <a href="{{url('admin/rekap')}}">
+            <i class="fa fa-home"></i> <span>Rekap Penanganan RTLH</span>
+          </a>
+        </li>
+        @endif
+        <li id="peta-menu">
+          <a href="{{url('admin/peta')}}">
+            <i class="fa fa-map"></i> <span>Peta</span>
+          </a>
+        </li>
+        <li class="header">OPTION</li>
+        <li>
+            <a href="{{ url('admin/logout')}}"
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                <i class="fa fa-user"></i> <span>Logout</span>
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+          </li>
       </ul>
     </section>
     <!-- /.sidebar -->

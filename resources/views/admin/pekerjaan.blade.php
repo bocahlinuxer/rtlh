@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -10,7 +10,7 @@
       <h1>Daftar Pekerjaan
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{url('admin//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active">Pekerjaan</li>
       </ol>
     </section>
@@ -48,7 +48,7 @@
             <div class="box-header">
               <h3 class="box-title">
               </h3>
-              <a type="button" class="btn btn-primary" href="{{url('pekerjaan/create')}}"><i class="fa fa-plus"> Tambah Baru</i></a>
+              <a type="button" class="btn btn-primary" href="{{url('admin/pekerjaan/create')}}"><i class="fa fa-plus"> Tambah Baru</i></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -74,7 +74,7 @@
                     <td>{{ $u -> updated_at or ''}}</td>
                     <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('pekerjaan/'.$u->id_pekerjaan.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        <a type="button" class="btn btn-default" href="{{url('admin/pekerjaan/'.$u->id_pekerjaan.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
                         {!! Form::open(array('url' => 'pekerjaan/'.$u->id_pekerjaan, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}

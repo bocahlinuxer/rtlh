@@ -60,7 +60,7 @@ class RtlhController extends Controller
             ]
         )->where('status', '<>', 0)->get();
         
-        return view('rtlh')->with('rtlh', $rtlh);
+        return view('admin.rtlh')->with('rtlh', $rtlh);
     }
 
     /**
@@ -72,7 +72,7 @@ class RtlhController extends Controller
     {
         $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
-        return view('rtlh-create')->with(array(
+        return view('admin.rtlh-create')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan
             ));
@@ -168,7 +168,7 @@ class RtlhController extends Controller
             ]
         )->find($id);
         
-        return view('rtlh-detail')->with('rtlh', $rtlh);
+        return view('admin.rtlh-detail')->with('rtlh', $rtlh);
     }
 
     /**
@@ -183,7 +183,7 @@ class RtlhController extends Controller
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
         $rtlh = Rtlh::find($id);
 
-        return view('rtlh-edit')->with(array(
+        return view('admin.rtlh-edit')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan,
             "rtlh" => $rtlh

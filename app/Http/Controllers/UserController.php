@@ -44,7 +44,7 @@ class UserController extends Controller
         
         //buat ngetes
         //return json_encode($users);
-        return view('user')->with('users', $users);
+        return view('admin.user')->with('users', $users);
     }
 
     /**
@@ -54,7 +54,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user-create');
+        return view('admin.user-create');
     }
 
     /**
@@ -129,7 +129,7 @@ class UserController extends Controller
             ]
         )->get()->find($id);
 
-        return view('user-edit')->with('user', $user);
+        return view('admin.user-edit')->with('user', $user);
     }
 
     /**

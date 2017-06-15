@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -198,6 +198,7 @@
               <h3 class="box-title">
                 Foto RTLH
               </h3>
+              {{-- <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a> --}}
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -208,6 +209,7 @@
                     <th>Foto</th>
                     <th>Tgl Input</th>
                     <th>Tgl Ubah</th>
+                    {{-- <th style="width: 10%">Opsi</th> --}}
                   </tr>
                 </thead>
                 <tbody>
@@ -217,9 +219,17 @@
                 @foreach($rtlh->foto_rtlh as $u)
                   <tr>
                     <td>{{ $no }}</td>
-                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-width: 150px"></td>
+                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-width: 300px"></td>
                     <td>{{ $u -> created_at or ''}}</td>
                     <td>{{ $u -> updated_at or ''}}</td>
+                    {{-- <td align="center">
+                      <div class="btn-group-vertical">
+                        <a type="button" class="btn btn-default" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        {!! Form::open(array('url' => 'pengajuan/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh, 'method' => 'delete')) !!}
+                            <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
+                        {!! Form::close() !!}
+                      </div>
+                    </td> --}}
                   </tr>
                 @php
                   $no++;
@@ -232,74 +242,6 @@
                     <th>Foto</th>
                     <th>Tgl Input</th>
                     <th>Tgl Ubah</th>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">
-                Penanganan RTLH
-              </h3>
-              <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('terverifikasi/'.$rtlh->id_rtlh.'/penanganan/create')}}"><i class="fa fa-plus"> Tambah Penanganan</i></a>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Foto 0%</th>
-                    <th>Foto 100%</th>
-                    <th>OPD</th>
-                    <th>Tgl Input</th>
-                    <th>Tgl Ubah</th>
-                    <th style="width: 10%">Opsi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                @php
-                  $no = 1;
-                @endphp
-                @foreach($rtlh->penanganan as $p)
-                  <tr>
-                    <td>{{ $no }}</td>
-                    <td><img src="{{asset('img/penanganan/'.$p-> foto0)}}" class="img-responsive" style="max-width: 150px"></td>
-                    <td><img src="{{asset('img/penanganan/'.$p-> foto100)}}" class="img-responsive" style="max-width: 150px"></td>
-                    <td>{{ $p -> opd -> opd or ''}}</td>
-                    <td>{{ $p -> created_at or ''}}</td>
-                    <td>{{ $p -> updated_at or ''}}</td>
-                    <td align="center">
-                      <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('terverifikasi/'.$rtlh->id_rtlh.'/penanganan/'.$p->id_penanganan.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
-                        {!! Form::open(array('url' => 'terverifikasi/'.$rtlh->id_rtlh.'/penanganan/'.$p->id_penanganan, 'method' => 'delete')) !!}
-                            <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
-                        {!! Form::close() !!}
-                      </div>
-                    </td>
-                  </tr>
-                @php
-                  $no++;
-                @endphp
-                @endforeach
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>No</th>
-                    <th>Foto 0%</th>
-                    <th>Foto 100%</th>
-                    <th>OPD</th>
-                    <th>Tgl Input</th>
-                    <th>Tgl Ubah</th>
-                    <th style="width: 10%">Opsi</th>
                   </tr>
                 </tfoot>
               </table>
@@ -320,7 +262,7 @@
 
 <script>
   $(function(){
-    $('#terverifikasi-menu').addClass('active');
+    $('#rtlh-menu').addClass('active');
   });
 </script>
 @endsection

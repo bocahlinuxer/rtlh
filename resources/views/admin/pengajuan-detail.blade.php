@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -8,19 +8,20 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        {!! Form::open(array('url' => 'verifikasi/'.$rtlh->id_rtlh, 'method' => 'put')) !!}
-        Detail Pengajuan Rumah Tidak Layak Huni 
-        {{-- <a type="button" class="btn btn-primary pull-right" href="{{url('pengajuan/'.$rtlh->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Verifikasi</i></a> --}}
-        @if($rtlh->status == 1)
-        <button type="submit" onclick="return confirm('Apakah anda yakin memverifikasi data?');" class="btn btn-success pull-right"><i class="fa fa-edit"> Verifikasi</i></button>
-        @endif
-        {!! Form::close() !!}
+        Detail Pengajuan Rumah Tidak Layak Huni <a type="button" class="btn btn-primary pull-right" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Ubah Pengajuan</i></a>
       </h1>
-      
     </section>
 
     <!-- Main content -->
     <section class="content">
+      @if(Session::has('msgsave'))
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-success alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">{{Session::get('msgsave')}}</h6>    
+      </div>
+      <!-- /info alert -->
+      @endif
       @if(Session::has('msgedit'))
       <!-- Info alert -->
       <div id="alert" class="alert alert-info alert-styled-left alert-arrow-left alert-component animated shake">
@@ -204,7 +205,7 @@
               <h3 class="box-title">
                 Foto RTLH
               </h3>
-              {{-- <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('pengajuan/'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a> --}}
+              <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -215,7 +216,7 @@
                     <th>Foto</th>
                     <th>Tgl Input</th>
                     <th>Tgl Ubah</th>
-                    {{-- <th style="width: 10%">Opsi</th> --}}
+                    <th style="width: 10%">Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -228,14 +229,14 @@
                     <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-width: 300px"></td>
                     <td>{{ $u -> created_at or ''}}</td>
                     <td>{{ $u -> updated_at or ''}}</td>
-                    {{-- <td align="center">
+                    <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('pengajuan/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        <a type="button" class="btn btn-default" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
                         {!! Form::open(array('url' => 'pengajuan/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}
                       </div>
-                    </td> --}}
+                    </td>
                   </tr>
                 @php
                   $no++;
@@ -248,6 +249,7 @@
                     <th>Foto</th>
                     <th>Tgl Input</th>
                     <th>Tgl Ubah</th>
+                    <th style="width: 10%">Opsi</th>
                   </tr>
                 </tfoot>
               </table>

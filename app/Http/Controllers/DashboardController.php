@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +23,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        return view('admin.dashboard');
     }
 }

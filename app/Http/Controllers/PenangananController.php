@@ -66,11 +66,11 @@ class PenangananController extends Controller
 
         if($rtlh != null)
         {
-            return view('verifikasi-penanganan')->with('rtlh', $rtlh);
+            return view('admin.verifikasi-penanganan')->with('rtlh', $rtlh);
         }
         else
         {
-            return view('errors/204');
+            return view('admin.errors/204');
         }
     }
 
@@ -83,7 +83,7 @@ class PenangananController extends Controller
     {
         $opd = Opd::where('status', '<>', 0)->get();
 
-        return view('verifikasi-penanganan-create')->with(array(
+        return view('admin.verifikasi-penanganan-create')->with(array(
             "idrtlh" => $idrtlh,
             "opd" => $opd
             ));
@@ -193,7 +193,7 @@ class PenangananController extends Controller
         $opd = Opd::where('status', '<>', 0)->get();
         $penanganan = Penanganan::with('opd')->find($id);
 
-        return view('verifikasi-penanganan-edit')->with(array(
+        return view('admin.verifikasi-penanganan-edit')->with(array(
             'idrtlh' => $idrtlh,
             'id' => $id,
             'opd' => $opd,
@@ -322,6 +322,6 @@ class PenangananController extends Controller
             ]
         )->where('status', '<>', 0)->get();
 
-        return view('rekap-penanganan')->with('penanganan', $penanganan);
+        return view('admin.rekap-penanganan')->with('penanganan', $penanganan);
     }
 }

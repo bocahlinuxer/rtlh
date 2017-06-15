@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -10,7 +10,7 @@
       <h1>Daftar Rumah Tidak Layak Huni terverifikasi
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{url('admin//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active">RTLH Terverifikasi</li>
       </ol>
     </section>
@@ -56,9 +56,9 @@
                     </td>
                     <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('terverifikasi/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
+                        <a type="button" class="btn btn-default" href="{{url('admin/terverifikasi/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
                         @if(Auth::user()->tipe == 4)
-                        <a type="button" class="btn btn-success" href="{{url('terverifikasi/'.$r->id_rtlh.'/penanganan')}}"><i class="fa fa-eye"> Penanganan</i></a>
+                        <a type="button" class="btn btn-success" href="{{url('admin/terverifikasi/'.$r->id_rtlh.'/penanganan')}}"><i class="fa fa-eye"> Penanganan</i></a>
                         @endif
                         {{-- {!! Form::open(array('url' => 'pengajuan/'.$r->id_rtlh, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>

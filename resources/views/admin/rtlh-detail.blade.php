@@ -1,4 +1,4 @@
-@extends('template')
+@extends('admin.template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Detail Rumah Tidak Layak Huni <a type="button" class="btn btn-primary pull-right" href="{{url('rtlh/'.$rtlh->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Ubah Data</i></a>
+        Detail Rumah Tidak Layak Huni <a type="button" class="btn btn-primary pull-right" href="{{url('admin/rtlh/'.$rtlh->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Ubah Data</i></a>
       </h1>
     </section>
 
@@ -205,7 +205,7 @@
               <h3 class="box-title">
                 Foto RTLH
               </h3>
-              <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('rtlh/'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a>
+              <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('admin/rtlh/'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -231,7 +231,7 @@
                     <td>{{ $u -> updated_at or ''}}</td>
                     <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('rtlh/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        <a type="button" class="btn btn-default" href="{{url('admin/rtlh/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
                         {!! Form::open(array('url' => 'rtlh/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}
