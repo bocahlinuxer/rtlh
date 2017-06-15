@@ -89,7 +89,7 @@
                     <td align="center">
                       <div class="btn-group-vertical">
                         <a type="button" class="btn btn-default" href="{{url('admin/user/'.$u->id_user.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
-                        {!! Form::open(array('url' => 'user/'.$u->id_user, 'method' => 'delete')) !!}
+                        {!! Form::open(array('url' => 'admin/user/'.$u->id_user, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}
                       </div>

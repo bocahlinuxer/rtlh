@@ -134,7 +134,7 @@ class VerifikasiController extends Controller
         $rtlh->save();
 
         Session::flash('msgedit', 'verifikasi pengajuan RTLH berhasil');
-        return redirect('verifikasi/'.$rtlh->id_rtlh);
+        return redirect('admin/verifikasi/'.$rtlh->id_rtlh);
     }
 
     /**

@@ -280,7 +280,7 @@
                     <td align="center">
                       <div class="btn-group-vertical">
                         <a type="button" class="btn btn-default" href="{{url('admin/terverifikasi/'.$rtlh->id_rtlh.'/penanganan/'.$p->id_penanganan.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
-                        {!! Form::open(array('url' => 'terverifikasi/'.$rtlh->id_rtlh.'/penanganan/'.$p->id_penanganan, 'method' => 'delete')) !!}
+                        {!! Form::open(array('url' => 'admin/terverifikasi/'.$rtlh->id_rtlh.'/penanganan/'.$p->id_penanganan, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}
                       </div>

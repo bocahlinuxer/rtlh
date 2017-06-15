@@ -101,7 +101,7 @@ class PenangananController extends Controller
         $validator = Validator::make($request->all(), Penanganan::$rules);
 
         if ($validator->fails()) {
-            return redirect('terverifikasi/'.$idrtlh.'/penanganan/create')
+            return redirect('admin/terverifikasi/'.$idrtlh.'/penanganan/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -168,7 +168,7 @@ class PenangananController extends Controller
         }
 
         Session::flash('msgsave', 'Tambah Penanganan RTLH berhasil');
-        return redirect('terverifikasi/'.$idrtlh.'/penanganan');
+        return redirect('admin/terverifikasi/'.$idrtlh.'/penanganan');
     }
 
     /**
@@ -214,7 +214,7 @@ class PenangananController extends Controller
         $validator = Validator::make($request->all(), Penanganan::$updaterules);
 
         if ($validator->fails()) {
-            return redirect('terverifikasi/'.$idrtlh.'/penanganan/'.$id.'/edit')
+            return redirect('admin/terverifikasi/'.$idrtlh.'/penanganan/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -282,7 +282,7 @@ class PenangananController extends Controller
         }
 
         Session::flash('msgedit', 'Ubah Penanganan RTLH berhasil');
-        return redirect('terverifikasi/'.$idrtlh.'/penanganan');
+        return redirect('admin/terverifikasi/'.$idrtlh.'/penanganan');
     }
 
     /**
@@ -297,7 +297,7 @@ class PenangananController extends Controller
         $penanganan->delete();
 
         Session::flash('msgdelete', 'Hapus Penanganan RTLH berhasil');
-        return redirect('terverifikasi/'.$idrtlh.'/penanganan');
+        return redirect('admin/terverifikasi/'.$idrtlh.'/penanganan');
     }
 
     /**

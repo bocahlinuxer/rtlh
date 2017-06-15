@@ -90,7 +90,7 @@ class RtlhController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('rtlh/create')
+            return redirect('admin/rtlh/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -126,7 +126,7 @@ class RtlhController extends Controller
         //simpan user baru
         $rtlh->save();
 
-        return redirect('rtlh');
+        return redirect('admin/rtlh');
         Session::flash('msgsave', 'Tambah RTLH berhasil');
     }
 
@@ -203,7 +203,7 @@ class RtlhController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('rtlh/'.$id.'/edit')
+            return redirect('admin/rtlh/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -240,7 +240,7 @@ class RtlhController extends Controller
         $rtlh->save();
 
         Session::flash('msgedit', 'Ubah RTLH berhasil');
-        return redirect('rtlh/'.$rtlh->id_rtlh);
+        return redirect('admin/rtlh/'.$rtlh->id_rtlh);
     }
 
     /**
@@ -266,6 +266,6 @@ class RtlhController extends Controller
         $rtlh->save();
 
         Session::flash('msgdelete', 'Hapus RTLH berhasil');
-        return redirect('rtlh');
+        return redirect('admin/rtlh');
     }
 }

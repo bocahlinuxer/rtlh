@@ -69,7 +69,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), User::$rules);
 
         if ($validator->fails()) {
-            return redirect('user/create')
+            return redirect('admin/user/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -93,7 +93,7 @@ class UserController extends Controller
         $user->save();
 
         Session::flash('msgsave', 'Tambah pengguna berhasil');
-        return redirect('user');
+        return redirect('admin/user');
     }
 
     /**
@@ -105,7 +105,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        return redirect('user');
+        return redirect('admin/user');
     }
 
     /**
@@ -145,7 +145,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), User::$updaterules);
 
         if ($validator->fails()) {
-            return redirect('user/'.$id.'/edit')
+            return redirect('admin/user/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -173,7 +173,7 @@ class UserController extends Controller
         $user->save();
         
         Session::flash('msgedit', 'Ubah pengguna berhasil');
-        return redirect('user');
+        return redirect('admin/user');
     }
 
     /**
@@ -196,6 +196,6 @@ class UserController extends Controller
         $user->save();
 
         Session::flash('msgdelete', 'Hapus pengguna berhasil');
-        return redirect('user');
+        return redirect('admin/user');
     }
 }

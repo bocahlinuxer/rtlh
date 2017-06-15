@@ -89,7 +89,7 @@ class PengajuanController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('pengajuan/create')
+            return redirect('admin/pengajuan/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -127,7 +127,7 @@ class PengajuanController extends Controller
         $rtlh->save();
 
         Session::flash('msgsave', 'Pengajuan RTLH berhasil');
-        return redirect('pengajuan');
+        return redirect('admin/pengajuan');
     }
 
     /**
@@ -207,7 +207,7 @@ class PengajuanController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('pengajuan/'.$id.'/edit')
+            return redirect('admin/pengajuan/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -247,7 +247,7 @@ class PengajuanController extends Controller
         $rtlh->save();
 
         Session::flash('msgedit', 'Ubah pengajuan RTLH berhasil');
-        return redirect('pengajuan/'.$rtlh->id_rtlh);
+        return redirect('admin/pengajuan/'.$rtlh->id_rtlh);
     }
 
     /**
@@ -275,6 +275,6 @@ class PengajuanController extends Controller
         $rtlh->save();
 
         Session::flash('msgdelete', 'Hapus pengajuan RTLH berhasil');
-        return redirect('pengajuan');
+        return redirect('admin/pengajuan');
     }
 }

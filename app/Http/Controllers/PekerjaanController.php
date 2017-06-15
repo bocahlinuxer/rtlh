@@ -69,7 +69,7 @@ class PekerjaanController extends Controller
         $validator = Validator::make($request->all(), Pekerjaan::$rules);
 
         if ($validator->fails()) {
-            return redirect('pekerjaan/create')
+            return redirect('admin/pekerjaan/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -90,7 +90,7 @@ class PekerjaanController extends Controller
         $pekerjaan->save();
 
         Session::flash('msgsave', 'Tambah pekerjaan berhasil');
-        return redirect('pekerjaan');
+        return redirect('admin/pekerjaan');
     }
 
     /**
@@ -102,7 +102,7 @@ class PekerjaanController extends Controller
     public function show($id)
     {
         //
-        return redirect('pekerjaan');
+        return redirect('admin/pekerjaan');
     }
 
     /**
@@ -142,7 +142,7 @@ class PekerjaanController extends Controller
         $validator = Validator::make($request->all(), Pekerjaan::$rules);
 
         if ($validator->fails()) {
-            return redirect('pekerjaan/'.$id.'/edit')
+            return redirect('admin/pekerjaan/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -163,7 +163,7 @@ class PekerjaanController extends Controller
         $pekerjaan->save();
         
         Session::flash('msgedit', 'Ubah pengguna berhasil');
-        return redirect('pekerjaan');
+        return redirect('admin/pekerjaan');
     }
 
     /**
@@ -186,6 +186,6 @@ class PekerjaanController extends Controller
         $pekerjaan->save();
 
         Session::flash('msgdelete', 'Hapus pengguna berhasil');
-        return redirect('pekerjaan');
+        return redirect('admin/pekerjaan');
     }
 }

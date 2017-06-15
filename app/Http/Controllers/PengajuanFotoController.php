@@ -46,7 +46,7 @@ class PengajuanFotoController extends Controller
         $validator = Validator::make($request->all(), FotoRtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('pengajuan/'.$idrtlh.'/fotortlh/create')
+            return redirect('admin/pengajuan/'.$idrtlh.'/fotortlh/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -88,7 +88,7 @@ class PengajuanFotoController extends Controller
         }
 
         Session::flash('msgsave', 'Tambah Foto Pengajuan RTLH berhasil');
-        return redirect('pengajuan/'.$idrtlh);
+        return redirect('admin/pengajuan/'.$idrtlh);
     }
 
     /**
@@ -118,7 +118,7 @@ class PengajuanFotoController extends Controller
         $validator = Validator::make($request->all(), FotoRtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('pengajuan/'.$idrtlh.'/fotortlh/'.$id.'/edit')
+            return redirect('admin/pengajuan/'.$idrtlh.'/fotortlh/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -155,7 +155,7 @@ class PengajuanFotoController extends Controller
         }
 
         Session::flash('msgedit', 'Ubah Foto Pengajuan RTLH berhasil');
-        return redirect('pengajuan/'.$idrtlh);
+        return redirect('admin/pengajuan/'.$idrtlh);
     }
 
     /**
@@ -172,6 +172,6 @@ class PengajuanFotoController extends Controller
         $foto->delete();
 
         Session::flash('msgdelete', 'Hapus Foto Pengajuan RTLH berhasil');
-        return redirect('pengajuan/'.$idrtlh);
+        return redirect('admin/pengajuan/'.$idrtlh);
     }
 }
