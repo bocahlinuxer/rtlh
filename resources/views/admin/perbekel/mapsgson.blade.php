@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('admin.perbekel.template')
 @section('content')
 
 <link rel="stylesheet" href="{{asset('leaflet/leaflet.css')}}">
@@ -10,7 +10,7 @@
       <h1>Peta Rumah Tidak Layak Huni
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('admin//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{url('adminperbekel//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active">Peta</li>
       </ol>
     </section>
@@ -55,6 +55,19 @@
       attribution: 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18
     });
+
+    var MarkerIcon = L.Icon.extend({
+        options: {
+            iconSize:     [42, 42],
+            iconAnchor:   [21, 42],
+            popupAnchor:  [0, -36]
+        }
+    });
+
+    var redIcon = new MarkerIcon({iconUrl: '{{asset('leaflet/images/merah.png')}}' }),
+    blueIcon = new MarkerIcon({iconUrl: '{{asset('leaflet/images/biru.png')}}' }),
+    greenIcon = new MarkerIcon({iconUrl: '{{asset('leaflet/images/hijau.png')}}' }),
+    yellowIcon = new MarkerIcon({iconUrl: '{{asset('leaflet/images/kuning.png')}}' });
 
     var map = L.map('mapid', {
         center: [-8.346593, 115.520736],
@@ -160,10 +173,22 @@
       control.addOverlay(jalan, "Jalan");
     });
 
-    $.getJSON("{{url('admin/peta/ajax/rumah')}}",function(data){
+    $.getJSON("{{url('adminperbekel/ajax/rumah')}}",function(data){
       var markers = [];
       $.each(data, function(key, value){
-        markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)]).bindPopup(value.nama));
+        if(value.status == 1)
+        {
+          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: redIcon}).bindPopup(value.nama));
+        } else if(value.status == 2)
+        {
+          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: blueIcon}).bindPopup(value.nama));
+        } else if(value.status == 3)
+        {
+          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: greenIcon}).bindPopup(value.nama));
+        } else if(value.status == 4)
+        {
+          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: yellowIcon}).bindPopup(value.nama));
+        }
       });
       control.addOverlay(L.layerGroup(markers), "RTLH");
     });

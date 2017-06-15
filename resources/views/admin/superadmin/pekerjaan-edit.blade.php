@@ -1,15 +1,15 @@
-@extends('admin.template')
+@extends('admin.superadmin.template')
 @section('content')
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Ubah Foto RTLH
+      Ubah Pekerjaan
     </h1>
     <ol class="breadcrumb">
-      <li><a href="{{url('admin/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{url('admin/rtlh/'.$idrtlh)}}">Foto RTLH</a></li>
+      <li><a href="{{url('superadmin/')}}"><i class="fa fa-dashboard"></i> Beranda</a></li>
+      <li><a href="{{url('superadmin/pekerjaan')}}">Pekerjaan</a></li>
       <li class="active">Ubah</li>
     </ol>
   </section>
@@ -17,10 +17,10 @@
   <!-- Main content -->
   <section class="content">
     <!-- Default box -->
-    {!! Form::open(array('url' => url('admin/rtlh/'.$idrtlh.'/fotortlh/'.$id), 'role' => 'form', 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
+    {!! Form::open(array('url' => url('superadmin/pekerjaan/'.$pekerjaan->id_pekerjaan), 'role' => 'form', 'method' => 'PUT')) !!}
       <div class="box box-success" style="width: 50%">
         <div class="box-header with-border">
-          <h3 class="box-title">Form Foto RTLH</h3>
+          <h3 class="box-title">Form Pekerjaan</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -30,19 +30,18 @@
         <!-- /.box-header -->
         <div class="box-body">
           <!-- text input -->
-          <div class="form-group {{ $errors->has('file_fotortlh') ? ' has-error' : '' }}">
-            <label class="control-label" for="file_fotortlh">Foto RTLH</label>
-            <input type="file" class="form-control" id="file_fotortlh" name="file_fotortlh" required="true">
-            @if ($errors->has('file_fotortlh'))
+          <div class="form-group {{ $errors->has('pekerjaan') ? ' has-error' : '' }}">
+            <label class="control-label" for="pekerjaan">Username</label>
+            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" required="true" maxlength="100" value="{{$pekerjaan->pekerjaan}}">
+            @if ($errors->has('pekerjaan'))
             <span class="help-block">
-                <strong>{{ $errors->first('file_fotortlh') }}</strong>
+                <strong>{{ $errors->first('pekerjaan') }}</strong>
             </span>
             @endif
           </div>
-        </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <a type="button" class="btn btn-danger" href="{{url('admin/rtlh/'.$idrtlh)}}">Kembali</a>
+          <a type="button" class="btn btn-danger" href="{{url('superadmin/pekerjaan')}}">Kembali</a>
           <button type="submit" class="btn btn-primary pull-right">Simpan</button>
         </div>
       </div>
@@ -52,7 +51,7 @@
 
 <script>
   $(function(){
-    $('#rtlh-menu').addClass('active');
+    $('#pekerjaan-menu').addClass('active');
   });
 </script>
 @endsection

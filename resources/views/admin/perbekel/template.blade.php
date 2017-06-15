@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{asset('assets/dist/css/AdminLTE.min.css')}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{asset('assets/dist/css/skins/skin-purple.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/dist/css/skins/skin-red.min.css')}}">
 
   <!-- jQuery 3.1.1 -->
   <script src="{{asset('assets/plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
@@ -33,17 +33,17 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{url('')}}" class="logo">
+    <a href="{{url('adminperbekel/')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">RTLH</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>e</b>-RTLH</span>
+      <span class="logo-lg"><b>e</b>-RTLH Admin</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -58,40 +58,62 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{asset('assets/dist/img/user2-160x160b.jpg')}}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>{{Auth::user()->nama}}</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> 
+          Perbekel ({{Auth::user()->desa->desa}})
+          </a>
+        </div>
+      </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <li id="beranda-menu">
-          <a href="{{url('')}}">
+          <a href="{{url('adminperbekel/')}}">
             <i class="fa fa-dashboard"></i> <span>Beranda</span>
-          </a>
-        </li>
-        <li id="kontak-menu">
-          <a href="{{url('kontak')}}">
-            <i class="fa fa-dashboard"></i> <span>Kontak</span>
           </a>
         </li>
         <li class="header">RTLH</li>
         <li id="rtlh-menu">
-          <a href="{{url('rtlh')}}">
+          <a href="{{url('adminperbekel/rtlh')}}">
             <i class="fa fa-home"></i> <span>Data RTLH</span>
           </a>
         </li>
-        <li id="program-menu">
-          <a href="{{url('program')}}">
-            <i class="fa fa-home"></i> <span>Program</span>
+        
+        <li id="pengajuan-menu">
+          <a href="{{url('adminperbekel/pengajuan')}}">
+            <i class="fa fa-home"></i> <span>Pengajuan RTLH</span>
           </a>
         </li>
-        <li id="lokasi-menu">
-          <a href="{{url('lokasi')}}">
-            <i class="fa fa-home"></i> <span>Lokasi</span>
+
+        <li id="penanganan-menu">
+          <a href="{{url('adminperbekel/penanganan')}}">
+            <i class="fa fa-home"></i> <span>Penanganan RTLH</span>
           </a>
         </li>
-        <li class="header">Login</li>
-        <li id="login-menu">
-          <a href="{{url('login')}}">
-            <i class="fa fa-home"></i> <span>Login</span>
+        
+        <li id="peta-menu">
+          <a href="{{url('adminperbekel/lokasi')}}">
+            <i class="fa fa-map"></i> <span>Lokasi</span>
           </a>
+        </li>
+        
+        <li class="header">OPTION</li>
+        <li>
+          <a href="{{ url('logout')}}"
+              onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+              <i class="fa fa-user"></i> <span>Logout</span>
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+          </form>
         </li>
       </ul>
     </section>

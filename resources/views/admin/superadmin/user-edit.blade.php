@@ -1,23 +1,23 @@
-@extends('admin.template')
+@extends('admin.superadmin.template')
 @section('content')
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Tambah Pengguna
+      Ubah Pengguna
     </h1>
     <ol class="breadcrumb">
-      <li><a href="{{url('admin/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{url('admin/user')}}">Pengguna</a></li>
-      <li class="active">Tambah</li>
+      <li><a href="{{url('superadmin/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li><a href="{{url('superadmin/user')}}">Pengguna</a></li>
+      <li class="active">Ubah</li>
     </ol>
   </section>
 
   <!-- Main content -->
   <section class="content">
     <!-- Default box -->
-    {!! Form::open(array('url' => url('admin/user'), 'role' => 'form', 'method' => 'POST')) !!}
+    {!! Form::open(array('url' => url('superadmin/user/'.$user->id_user), 'role' => 'form', 'method' => 'PUT')) !!}
       <div class="box box-success" style="width: 50%">
         <div class="box-header with-border">
           <h3 class="box-title">Form Pengguna</h3>
@@ -32,7 +32,7 @@
           <!-- text input -->
           <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
             <label class="control-label" for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" required="true" maxlength="50" value="{{old('username')}}">
+            <input type="text" class="form-control" id="username" name="username" required="true" maxlength="50" readonly value="{{$user->username}}">
             @if ($errors->has('username'))
             <span class="help-block">
                 <strong>{{ $errors->first('username') }}</strong>
@@ -42,7 +42,7 @@
           <!-- text input -->
           <div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
             <label class="control-label" for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" required="true" maxlength="100" value="{{old('nama')}}">
+            <input type="text" class="form-control" id="nama" name="nama" required="true" maxlength="100" value="{{$user->nama}}">
             @if ($errors->has('nama'))
             <span class="help-block">
                 <strong>{{ $errors->first('nama') }}</strong>
@@ -52,37 +52,55 @@
           <!-- text input -->
           <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
             <label class="control-label" for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required="true" maxlength="100" value="{{old('password')}}">
+            <input type="password" class="form-control" id="password" name="password" maxlength="100">
             @if ($errors->has('password'))
             <span class="help-block">
                 <strong>{{ $errors->first('password') }}</strong>
             </span>
             @endif
+            <span class="help-block">Kosongkan jika tidak merubah password
+            </span>
           </div>
           <!-- text input -->
           <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
             <label class="control-label" for="password_confirmation">Konfirmasi Password</label>
-            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required="true" maxlength="100" value="{{old('password_confirmation')}}">
+            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" maxlength="100">
             @if ($errors->has('password_confirmation'))
             <span class="help-block">
                 <strong>{{ $errors->first('password_confirmation') }}</strong>
             </span>
             @endif
+            <span class="help-block">Kosongkan jika tidak merubah password
+            </span>
           </div>
           <!-- select -->
           <div class="form-group">
             <label class="control-label" for="tipe">Status</label>
-            <select class="form-control" id="tipe" name="tipe">
-              <option value="1">Super Admin</option>
-              <option value="2">Admin Perbekel</option>
-              <option value="3">Admin Verifikasi</option>
-              <option value="4">Admin Kepala</option>
+            <select class="form-control" id="tipe" name="tipe" onchange="changedesa()">
+              <option value="1" @if($user->tipe == 1) selected @endif>Super Admin</option>
+              <option value="2" @if($user->tipe == 2) selected @endif>Admin Perbekel</option>
+              <option value="3" @if($user->tipe == 3) selected @endif>Admin Verifikasi</option>
+              <option value="4" @if($user->tipe == 4) selected @endif>Admin Kepala</option>
             </select>
           </div>
+          <!-- select -->
+          <div id="input-desa" class="form-group">
+            <label class="control-label" for="desa">Desa</label>
+            <select class="form-control" id="desa" name="desa">
+              @foreach($kecamatan as $kec)
+              <optgroup label="{{$kec->kecamatan}}">
+                @foreach($kec->desa as $des)
+                <option value="{{$des->id_desa}}" @if($user->id_desa == $des->id_desa) selected @endif>{{$des->desa}}</option>
+                @endforeach
+              </optgroup>
+              @endforeach
+            </select>
+          </div>
+          <!-- select -->
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <a type="button" class="btn btn-danger" href="{{url('admin/user')}}">Kembali</a>
+          <a type="button" class="btn btn-danger" href="{{url('superadmin/user')}}">Kembali</a>
           <button type="submit" class="btn btn-primary pull-right">Simpan</button>
         </div>
       </div>
@@ -93,6 +111,20 @@
 <script>
   $(function(){
     $('#user-menu').addClass('active');
+
+    changedesa();
   });
+
+  function changedesa()
+  {
+    if($('#tipe').val() == 2)
+    {
+      $('#input-desa').removeClass('hidden');
+    }
+    else
+    {
+      $('#input-desa').addClass('hidden'); 
+    }
+  }
 </script>
 @endsection

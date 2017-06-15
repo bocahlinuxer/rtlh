@@ -18,7 +18,23 @@ class Superadmin
     {
         if(Auth::user()->tipe != 1)
         {
-            abort(403);
+            if(Auth::user()->tipe == 1)
+            {
+                return redirect('/superadmin/');
+            } 
+            elseif(Auth::user()->tipe == 2)
+            {
+                return redirect('/adminperbekel/');
+            }
+            elseif(Auth::user()->tipe == 3)
+            {
+                return redirect('/adminverifikasi/');
+            }
+            elseif(Auth::user()->tipe == 4)
+            {
+                return redirect('/adminkepala/');
+            }
+            //abort(403);
         }
 
         return $next($request);

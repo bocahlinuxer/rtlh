@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('admin.superadmin.template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -10,7 +10,7 @@
       <h1>Program Penanganan RTLH
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('admin//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{url('superadmin//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active">Penanganan</li>
       </ol>
     </section>

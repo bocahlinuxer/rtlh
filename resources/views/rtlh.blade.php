@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -7,49 +7,51 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Program Penanganan RTLH
+      <h1>Daftar Rumah Tidak Layak Huni
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('admin//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Penanganan</li>
+        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Beranda</a></li>
+        <li class="active">RTLH</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12">
           <div class="box">
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Rumah</th>
+                    <th>Nik</th>
+                    <th>Nama</th>
+                    <th>Pekerjaan</th>
+                    <th>Alamat</th>
                     <th>Kecamatan</th>
                     <th>Desa</th>
-                    <th>Foto 0%</th>
-                    <th>Foto 100%</th>
-                    <th>OPD</th>
-                    <th>Tgl</th>
-                    <th>Oleh</th>
+                    <th>Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
                 @php
                   $no = 1;
                 @endphp
-                @foreach($rtlh as $p)
+                @foreach($rtlh as $r)
                   <tr>
                     <td>{{ $no }}</td>
-                    <td>{{ $p->nama }}</td>
-                    <td>{{ $p->desa->kecamatan->kecamatan }}</td>
-                    <td>{{ $p->desa->desa }}</td>
-                    <td><img src="{{asset('img/penanganan/'.$p-> foto0)}}" class="img-responsive" style="max-width: 150px"></td>
-                    <td><img src="{{asset('img/penanganan/'.$p-> foto100)}}" class="img-responsive" style="max-width: 150px"></td>
-                    <td>{{ $p -> opd -> opd or ''}}</td>
-                    <td>{{ $p -> penanganan_at or ''}}</td>
-                    <td>{{ $p -> penanganan_by_user -> nama or ''}}</td>
+                    <td>{{ $r -> nik or '' }}</td>
+                    <td>{{ $r -> nama or ''}}</td>
+                    <td>{{ $r -> pekerjaan -> pekerjaan or ''}}</td>
+                    <td>{{ $r -> alamat or ''}}</td>
+                    <td>{{ $r -> desa -> kecamatan -> kecamatan}}</td>
+                    <td>{{ $r -> desa -> desa}}</td>
+                    <td align="center">
+                      <div class="btn-group-vertical">
+                        <a type="button" class="btn btn-default" href="{{url('rtlh/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
+                      </div>
+                    </td>
                   </tr>
                 @php
                   $no++;
@@ -59,14 +61,13 @@
                 <tfoot>
                   <tr>
                     <th>No</th>
-                    <th>Rumah</th>
+                    <th>Nik</th>
+                    <th>Nama</th>
+                    <th>Pekerjaan</th>
+                    <th>Alamat</th>
                     <th>Kecamatan</th>
                     <th>Desa</th>
-                    <th>Foto 0%</th>
-                    <th>Foto 100%</th>
-                    <th>OPD</th>
-                    <th>Tgl</th>
-                    <th>Oleh</th>
+                    <th>Opsi</th>
                   </tr>
                 </tfoot>
               </table>
@@ -89,7 +90,7 @@
 
 <script>
   $(function () {
-    $('#rekap-menu').addClass('active');
+    $('#rtlh-menu').addClass('active');
 
     $("#example1").DataTable();
   });

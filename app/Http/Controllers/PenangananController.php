@@ -16,16 +16,6 @@ use Auth;
 class PenangananController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -305,23 +295,81 @@ class PenangananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function rekapsuperadmin()
+    {
+        $rtlh = Rtlh::with(
+            [
+                'penanganan_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'desa' => function($q)
+                {
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
+                },
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
+                },
+                'opd' => function($q)
+                {
+                    $q->select('id_opd', 'opd');
+                }
+            ]
+        )->where('status', '>=', 3)->get();
+
+        return view('admin.superadmin.rekap-penanganan')->with('rtlh', $rtlh);
+    }
+
+    public function rekapperbekel()
+    {
+        $rtlh = Rtlh::with(
+            [
+                'penanganan_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'desa' => function($q)
+                {
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
+                },
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
+                },
+                'opd' => function($q)
+                {
+                    $q->select('id_opd', 'opd');
+                }
+            ]
+        )->where('status', '>=', 3)->where('id_desa', Auth::user()->desa->id_desa)->get();
+
+        return view('admin.perbekel.rekap-penanganan')->with('rtlh', $rtlh);
+    }
+
     public function rekap()
     {
-        $penanganan = Penanganan::with(
+        $rtlh = Rtlh::with(
             [
-                'created_by_user' => function($q)
+                'penanganan_by_user' => function($q)
                 {
                     $q->select('id_user', 'nama');
                 },
-                'updated_by_user' => function($q)
+                'desa' => function($q)
                 {
-                    $q->select('id_user', 'nama');
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
                 },
-                'rtlh',
-                'opd'
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
+                },
+                'opd' => function($q)
+                {
+                    $q->select('id_opd', 'opd');
+                }
             ]
-        )->where('status', '<>', 0)->get();
+        )->where('status', '>=', 3)->get();
 
-        return view('admin.rekap-penanganan')->with('penanganan', $penanganan);
+        return view('admin.rekap-penanganan')->with('rtlh', $rtlh);
     }
 }

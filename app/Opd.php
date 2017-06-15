@@ -12,14 +12,9 @@ class Opd extends Model
     protected $table = 'opd';
     public $primaryKey = 'id_opd';
 
-    // public static $rules = array(
-    //     'foto0' => 'required|image',
-    //     'foto100' => 'required|image'
-    // );
-
-    public function penanganan()
+    public function rtlh()
     {
-    	return $this->hasMany('App\Penanganan', 'id_opd');
+    	return $this->hasMany('App\Rtlh', 'id_opd');
     }
 
     public function created_by_user()

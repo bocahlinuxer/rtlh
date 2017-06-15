@@ -25,7 +25,7 @@ class RtlhPolicy
         }
         else
         {
-            return $user->id_user === $rtlh->created_by;
+            return $user->id_desa === $rtlh->id_desa;
         }
     }
 

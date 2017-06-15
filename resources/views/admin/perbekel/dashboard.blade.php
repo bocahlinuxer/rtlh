@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('admin.perbekel.template')
 
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -838,7 +838,7 @@
   <script>
     $(function () {
       //active tree and menu
-      $('#dashboard-menu').addClass('active');
+      $('#beranda-menu').addClass('active');
     });
   </script>
 @endsection

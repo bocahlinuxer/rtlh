@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('admin.verifikasi.template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        {!! Form::open(array('url' => 'verifikasi/'.$rtlh->id_rtlh, 'method' => 'put')) !!}
+        {!! Form::open(array('url' => 'adminverifikasi/'.$rtlh->id_rtlh, 'method' => 'put')) !!}
         Detail Pengajuan Rumah Tidak Layak Huni 
         {{-- <a type="button" class="btn btn-primary pull-right" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Verifikasi</i></a> --}}
         @if($rtlh->status == 1)

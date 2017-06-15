@@ -14,17 +14,6 @@ use Auth;
 class RtlhController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('superadmin');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -60,7 +49,7 @@ class RtlhController extends Controller
             ]
         )->where('status', '<>', 0)->get();
         
-        return view('admin.rtlh')->with('rtlh', $rtlh);
+        return view('admin.superadmin.rtlh')->with('rtlh', $rtlh);
     }
 
     /**
@@ -72,7 +61,7 @@ class RtlhController extends Controller
     {
         $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
-        return view('admin.rtlh-create')->with(array(
+        return view('admin.superadmin.rtlh-create')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan
             ));
@@ -90,7 +79,7 @@ class RtlhController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('admin/rtlh/create')
+            return redirect('superadmin/rtlh/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -126,7 +115,7 @@ class RtlhController extends Controller
         //simpan user baru
         $rtlh->save();
 
-        return redirect('admin/rtlh');
+        return redirect('superadmin/rtlh');
         Session::flash('msgsave', 'Tambah RTLH berhasil');
     }
 
@@ -168,7 +157,7 @@ class RtlhController extends Controller
             ]
         )->find($id);
         
-        return view('admin.rtlh-detail')->with('rtlh', $rtlh);
+        return view('admin.superadmin.rtlh-detail')->with('rtlh', $rtlh);
     }
 
     /**
@@ -183,7 +172,7 @@ class RtlhController extends Controller
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
         $rtlh = Rtlh::find($id);
 
-        return view('admin.rtlh-edit')->with(array(
+        return view('admin.superadmin.rtlh-edit')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan,
             "rtlh" => $rtlh
@@ -203,7 +192,7 @@ class RtlhController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('admin/rtlh/'.$id.'/edit')
+            return redirect('superadmin/rtlh/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -240,7 +229,7 @@ class RtlhController extends Controller
         $rtlh->save();
 
         Session::flash('msgedit', 'Ubah RTLH berhasil');
-        return redirect('admin/rtlh/'.$rtlh->id_rtlh);
+        return redirect('superadmin/rtlh/'.$rtlh->id_rtlh);
     }
 
     /**
@@ -266,6 +255,76 @@ class RtlhController extends Controller
         $rtlh->save();
 
         Session::flash('msgdelete', 'Hapus RTLH berhasil');
-        return redirect('admin/rtlh');
+        return redirect('superadmin/rtlh');
+    }
+
+    //perbekel
+    public function indexperbekel()
+    {
+        $rtlh = Rtlh::with(
+            [
+                'created_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'updated_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'verified_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'pekerjaan' => function($q)
+                {
+                    $q->select('id_pekerjaan', 'pekerjaan');
+                },
+                'desa' => function($q)
+                {
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
+                },
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
+                }
+            ]
+        )->where('status', '<>', 0)->where('id_desa', Auth::user()->desa->id_desa)->get();
+        
+        return view('admin.perbekel.rtlh')->with('rtlh', $rtlh);
+    }
+
+    public function detailperbekel($id)
+    {
+        $rtlh = Rtlh::with(
+            [
+                'created_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'updated_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'verified_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'pekerjaan' => function($q)
+                {
+                    $q->select('id_pekerjaan', 'pekerjaan');
+                },
+                'desa' => function($q)
+                {
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
+                },
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
+                },
+                'foto_rtlh'
+            ]
+        )->where('id_desa', Auth::user()->desa->id_desa)->find($id);
+    
+        return view('admin.perbekel.rtlh-detail')->with('rtlh', $rtlh);
     }
 }

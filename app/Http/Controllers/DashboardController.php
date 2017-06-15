@@ -7,21 +7,26 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
 	/**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexsuperadmin()
+    {
+        return view('admin.superadmin.dashboard');
+    }
+
+    public function indexperbekel()
+    {
+        return view('admin.perbekel.dashboard');
+    }
+
+    public function indexverifikasi()
+    {
+        return view('admin.verifikasi.dashboard');
+    }
+
+    public function indexkepala()
     {
         return view('admin.dashboard');
     }

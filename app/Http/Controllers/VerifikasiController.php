@@ -13,16 +13,6 @@ use Carbon\Carbon;
 class VerifikasiController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -58,7 +48,7 @@ class VerifikasiController extends Controller
             ]
         )->where('status', '=', 1)->get();
         
-        return view('admin.verifikasi-belum')->with('rtlh', $rtlh);
+        return view('admin.verifikasi.verifikasi-belum')->with('rtlh', $rtlh);
     }
 
     /**
@@ -101,11 +91,11 @@ class VerifikasiController extends Controller
 
         if($rtlh != null)
         {
-        	return view('admin.verifikasi-detail')->with('rtlh', $rtlh);
+        	return view('admin.verifikasi.verifikasi-detail')->with('rtlh', $rtlh);
         }
         else
         {
-        	return view('admin.errors/204');
+        	return view('admin.verifikasi.errors/204');
         }
     }
 
@@ -134,7 +124,7 @@ class VerifikasiController extends Controller
         $rtlh->save();
 
         Session::flash('msgedit', 'verifikasi pengajuan RTLH berhasil');
-        return redirect('admin/verifikasi/'.$rtlh->id_rtlh);
+        return redirect('adminverifikasi/verifikasi/'.$rtlh->id_rtlh);
     }
 
     /**
@@ -173,7 +163,7 @@ class VerifikasiController extends Controller
             ]
         )->where('status', '=', 2)->get();
         
-        return view('admin.verifikasi-sudah')->with('rtlh', $rtlh);
+        return view('admin.verifikasi.verifikasi-sudah')->with('rtlh', $rtlh);
     }
 
     /**
@@ -216,11 +206,11 @@ class VerifikasiController extends Controller
 
         if($rtlh != null)
         {
-        	return view('admin.verifikasi-sudah-detail')->with('rtlh', $rtlh);
+        	return view('admin.verifikasi.verifikasi-sudah-detail')->with('rtlh', $rtlh);
         }
         else
         {
-        	return view('admin.errors/204');
+        	return view('admin.verifikasi.errors/204');
         }
     }
 }
