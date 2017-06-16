@@ -158,8 +158,6 @@ class PengajuanController extends Controller
             ]
         )->find($id);
 
-        $this->authorize('view', $rtlh);
-
         return view('admin.perbekel.pengajuan-detail')->with('rtlh', $rtlh);
     }
 
@@ -209,8 +207,6 @@ class PengajuanController extends Controller
         //buat variable user
         $rtlh = Rtlh::find($id);
 
-        $this->authorize('update', $rtlh);
-
         $rtlh->nama = $request->nama;
         $rtlh->nik = $request->nik;
         $rtlh->alamat = $request->alamat;
@@ -254,8 +250,6 @@ class PengajuanController extends Controller
         //buat variable user
         $rtlh = Rtlh::find($id);
 
-        $this->authorize('delete', $rtlh);
-        
         $rtlh->status = 0;
 
         //set created by

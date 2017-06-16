@@ -87,13 +87,13 @@
         
         <li id="pengajuan-menu">
           <a href="{{url('adminperbekel/pengajuan')}}">
-            <i class="fa fa-home"></i> <span>Pengajuan RTLH</span>
+            <i class="fa fa-upload"></i> <span>Pengajuan RTLH</span>
           </a>
         </li>
 
         <li id="penanganan-menu">
           <a href="{{url('adminperbekel/penanganan')}}">
-            <i class="fa fa-home"></i> <span>Penanganan RTLH</span>
+            <i class="fa fa-wrench"></i> <span>Penanganan RTLH</span>
           </a>
         </li>
         
@@ -108,7 +108,7 @@
           <a href="{{ url('logout')}}"
               onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
-              <i class="fa fa-user"></i> <span>Logout</span>
+              <i class="fa fa-sign-out"></i> <span>Logout</span>
           </a>
 
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

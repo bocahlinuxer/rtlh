@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('admin.perbekel.template')
 @section('content')
 
 <div class="content-wrapper">
@@ -8,8 +8,8 @@
       Ubah Foto Pengajuan RTLH
     </h1>
     <ol class="breadcrumb">
-      <li><a href="{{url('admin/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{url('admin/pengajuan/'.$idrtlh)}}">Foto Pengajuan RTLH</a></li>
+      <li><a href="{{url('adminperbekel/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li><a href="{{url('adminperbekel/pengajuan/'.$idrtlh)}}">Foto Pengajuan RTLH</a></li>
       <li class="active">Ubah</li>
     </ol>
   </section>
@@ -17,7 +17,7 @@
   <!-- Main content -->
   <section class="content">
     <!-- Default box -->
-    {!! Form::open(array('url' => url('admin/pengajuan/'.$idrtlh.'/fotortlh/'.$id), 'role' => 'form', 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
+    {!! Form::open(array('url' => url('adminperbekel/pengajuan/'.$idrtlh.'/fotortlh/'.$id), 'role' => 'form', 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
       <div class="box box-success" style="width: 50%">
         <div class="box-header with-border">
           <h3 class="box-title">Form Foto RTLH</h3>
@@ -42,7 +42,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <a type="button" class="btn btn-danger" href="{{url('admin/pengajuan/'.$idrtlh)}}">Kembali</a>
+          <a type="button" class="btn btn-danger" href="{{url('adminperbekel/pengajuan/'.$idrtlh)}}">Kembali</a>
           <button type="submit" class="btn btn-primary pull-right">Simpan</button>
         </div>
       </div>

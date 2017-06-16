@@ -1,4 +1,4 @@
-@extends('admin.verifikasi.template')
+@extends('admin.kepala.template')
 @section('content')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
@@ -7,11 +7,11 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Daftar Rumah Tidak Layak Huni Terverifikasi
+      <h1>Daftar Rumah Tidak Layak Huni
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('adminverifikasi//')}}"><i class="fa fa-dashboard"></i> Beranda</a></li>
-        <li class="active">RTLH Terverifikasi</li>
+        <li><a href="{{url('adminkepala/')}}"><i class="fa fa-dashboard"></i> Beranda</a></li>
+        <li class="active">RTLH</li>
       </ol>
     </section>
 
@@ -20,7 +20,6 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -49,14 +48,20 @@
                     <td>{{ $r -> desa -> kecamatan -> kecamatan.', '.$r -> desa -> desa}}</td>
                     <td>
                       @if($r -> status == 1)
-                      Diajukan
+                      Usulan
                       @elseif($r -> status == 2)
-                      Diverifikasi
+                      Verifikasi
+                      @elseif($r -> status == 3)
+                      Program
+                      @elseif($r -> status == 4)
+                      Publish
                       @endif
                     </td>
                     <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('adminverifikasi/terverifikasi/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
+                        <a type="button" class="btn btn-default" href="{{url('adminkepala/rtlh/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
+                        <a type="button" class="btn btn-success" href="{{url('adminkepala/penanganan/'.$r->id_rtlh.'/penanganan')}}"><i class="fa fa-wrench"> Penanganan</i></a>
+                        <a type="button" class="btn btn-warning" href="{{url('adminkepala/publikasi/'.$r->id_rtlh.'/penanganan')}}"><i class="fa fa-map-marker"> Publikasi</i></a>
                       </div>
                     </td>
                   </tr>
@@ -96,7 +101,7 @@
 
 <script>
   $(function () {
-    $('#terverifikasi-menu').addClass('active');
+    $('#rtlh-menu').addClass('active');
 
     $("#example1").DataTable();
   });

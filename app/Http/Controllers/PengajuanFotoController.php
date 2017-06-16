@@ -15,23 +15,13 @@ use Illuminate\Support\Facades\Storage;
 class PengajuanFotoController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create($idrtlh)
     {
-        return view('admin.pengajuanfoto-create')->with('idrtlh', $idrtlh);
+        return view('admin.perbekel.pengajuanfoto-create')->with('idrtlh', $idrtlh);
     }
 
     /**
@@ -46,7 +36,7 @@ class PengajuanFotoController extends Controller
         $validator = Validator::make($request->all(), FotoRtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('admin/pengajuan/'.$idrtlh.'/fotortlh/create')
+            return redirect('adminperbekel/pengajuan/'.$idrtlh.'/fotortlh/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -88,7 +78,7 @@ class PengajuanFotoController extends Controller
         }
 
         Session::flash('msgsave', 'Tambah Foto Pengajuan RTLH berhasil');
-        return redirect('admin/pengajuan/'.$idrtlh);
+        return redirect('adminperbekel/pengajuan/'.$idrtlh);
     }
 
     /**
@@ -99,7 +89,7 @@ class PengajuanFotoController extends Controller
      */
     public function edit($idrtlh, $id)
     {
-        return view('admin.pengajuanfoto-edit')->with(array(
+        return view('admin.perbekel.pengajuanfoto-edit')->with(array(
             'idrtlh' => $idrtlh,
             'id' => $id
             ));
@@ -118,7 +108,7 @@ class PengajuanFotoController extends Controller
         $validator = Validator::make($request->all(), FotoRtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('admin/pengajuan/'.$idrtlh.'/fotortlh/'.$id.'/edit')
+            return redirect('adminperbekel/pengajuan/'.$idrtlh.'/fotortlh/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -129,8 +119,6 @@ class PengajuanFotoController extends Controller
 
         //buat variable user
         $foto = FotoRtlh::find($id);
-
-        $this->authorize('update', $foto);
 
         //set updated by
         $foto->updated_by_user()->associate($userlogin);
@@ -155,7 +143,7 @@ class PengajuanFotoController extends Controller
         }
 
         Session::flash('msgedit', 'Ubah Foto Pengajuan RTLH berhasil');
-        return redirect('admin/pengajuan/'.$idrtlh);
+        return redirect('adminperbekel/pengajuan/'.$idrtlh);
     }
 
     /**
@@ -168,10 +156,9 @@ class PengajuanFotoController extends Controller
     {
         //buat variable user
         $foto = FotoRtlh::find($id);
-        $this->authorize('delete', $foto);
         $foto->delete();
 
         Session::flash('msgdelete', 'Hapus Foto Pengajuan RTLH berhasil');
-        return redirect('admin/pengajuan/'.$idrtlh);
+        return redirect('adminperbekel/pengajuan/'.$idrtlh);
     }
 }

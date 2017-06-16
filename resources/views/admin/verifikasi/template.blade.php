@@ -82,18 +82,18 @@
         
         <li id="verifikasi-menu">
           <a href="{{url('adminverifikasi/verifikasi')}}">
-            <i class="fa fa-home"></i> <span>Verifikasi RTLH</span>
+            <i class="fa fa-upload"></i> <span>Usulan RTLH</span>
           </a>
         </li>
         
         <li id="terverifikasi-menu">
           <a href="{{url('adminverifikasi/terverifikasi')}}">
-            <i class="fa fa-home"></i> <span>RTLH Terverifikasi</span>
+            <i class="fa fa-check"></i> <span>RTLH Terverifikasi</span>
           </a>
         </li>
         
         <li id="peta-menu">
-          <a href="{{url('adminverifikasi/peta')}}">
+          <a href="{{url('adminverifikasi/lokasi')}}">
             <i class="fa fa-map"></i> <span>Lokasi</span>
           </a>
         </li>

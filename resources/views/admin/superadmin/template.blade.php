@@ -97,7 +97,7 @@
         </li>
         <li id="rekap-menu">
           <a href="{{url('superadmin/program')}}">
-            <i class="fa fa-home"></i> <span>Program</span>
+            <i class="fa fa-wrench"></i> <span>Program</span>
           </a>
         </li>
         <li id="lokasi-menu">
@@ -110,7 +110,7 @@
           <a href="{{ url('logout')}}"
               onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
-              <i class="fa fa-user"></i> <span>Logout</span>
+              <i class="fa fa-sign-out"></i> <span>Logout</span>
           </a>
 
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

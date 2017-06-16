@@ -347,7 +347,7 @@ class PenangananController extends Controller
         return view('admin.perbekel.rekap-penanganan')->with('rtlh', $rtlh);
     }
 
-    public function rekap()
+    public function rekapkepala()
     {
         $rtlh = Rtlh::with(
             [
@@ -370,6 +370,6 @@ class PenangananController extends Controller
             ]
         )->where('status', '>=', 3)->get();
 
-        return view('admin.rekap-penanganan')->with('rtlh', $rtlh);
+        return view('admin.kepala.rekap-penanganan')->with('rtlh', $rtlh);
     }
 }

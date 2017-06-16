@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('admin.kepala.template')
 
 @section('content')
   <!-- Content Wrapper. Contains page content -->

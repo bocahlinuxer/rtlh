@@ -106,6 +106,41 @@ class VerifikasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function crosscheck($id)
+    {
+        $rtlh = Rtlh::with(
+            [
+                'created_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'updated_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'verified_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'pekerjaan' => function($q)
+                {
+                    $q->select('id_pekerjaan', 'pekerjaan');
+                },
+                'desa' => function($q)
+                {
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
+                },
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
+                },
+                'foto_rtlh'
+            ]
+        )->find($id);
+
+        return view('admin.verifikasi.verifikasi-crosscheck')->with('rtlh', $rtlh);
+    }
+
     public function verifikasi(Request $request, $id)
     {
         //ambil user yang login

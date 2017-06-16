@@ -28,6 +28,11 @@ class MapsController extends Controller
         return view('admin.verifikasi.mapsgson');
     }
 
+    public function indexkepala()
+    {
+        return view('admin.kepala.mapsgson');
+    }
+
     public function ajax_rumah_superadmin()
     {
         $rumah = Rtlh::where('status', '<>' , 0)->get();
@@ -45,6 +50,13 @@ class MapsController extends Controller
     public function ajax_rumah_verifikasi()
     {
         $rumah = Rtlh::where('status', '<=' , 2)->get();
+
+        return json_encode($rumah);
+    }
+
+    public function ajax_rumah_kepala()
+    {
+        $rumah = Rtlh::where('status', '<>' , 0)->get();
 
         return json_encode($rumah);
     }

@@ -82,20 +82,17 @@ Route::group(['prefix' => 'adminverifikasi', 'middleware' => ['auth', 'adminveri
 
 Route::group(['prefix' => 'adminkepala', 'middleware' => ['auth', 'adminkepala']], function () {
 	Route::get('/', 'DashboardController@indexkepala');
-});
 
+	Route::get('/rtlh', 'RtlhController@indexkepala');
+	Route::get('/rtlh/{id}', 'RtlhController@detailkepala');
 
-Route::group(['prefix' => 'admin'], function () {
-    
-	Route::get('verifikasi', 'VerifikasiController@index');
-	Route::get('verifikasi/{id}', 'VerifikasiController@detail');
-	Route::put('verifikasi/{id}', 'VerifikasiController@verifikasi');
-	Route::get('terverifikasi', 'VerifikasiController@sudah');
-	Route::get('terverifikasi/{id}', 'VerifikasiController@detailsudah');
+	Route::get('/program', 'PenangananController@rekapkepala');
 
-	Route::resource('terverifikasi/{idrtlh}/penanganan', 'PenangananController');
-
-	Route::get('program', 'PenangananController@rekap');
+	//peta
+	Route::get('lokasi', 'MapsController@indexkepala');
+	Route::group(['prefix' => 'ajax'], function () {
+		Route::get('rumah', 'MapsController@ajax_rumah_kepala');    
+	});
 });
 
 Auth::routes();

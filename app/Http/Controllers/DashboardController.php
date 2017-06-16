@@ -28,6 +28,6 @@ class DashboardController extends Controller
 
     public function indexkepala()
     {
-        return view('admin.dashboard');
+        return view('admin.kepala.dashboard');
     }
 }

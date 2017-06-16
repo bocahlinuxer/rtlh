@@ -10,7 +10,7 @@
       <h1>Daftar Pengajuan Rumah Tidak Layak Huni
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('adminverifikasi/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{url('adminverifikasi/')}}"><i class="fa fa-dashboard"></i> Beranda</a></li>
         <li class="active">Pengajuan RTLH</li>
       </ol>
     </section>
