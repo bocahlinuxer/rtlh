@@ -137,7 +137,7 @@
           for (var i = 0; i < 6; i++ ) {
               color += letters[Math.floor(Math.random() * 16)];
           }
-          return { color: "#999", weight: 1, fillColor: color, fillOpacity: .6 };
+          return { color: color, weight: 1, fillColor: color, fillOpacity: 0 };
         },
         onEachFeature: function( feature, layer ){
           layer.bindPopup(
@@ -155,12 +155,7 @@
       // add GeoJSON layer to the map once the file is loaded
       var jalan = L.geoJson(data, {
         style: function(feature){
-          var letters = '0123456789ABCDEF';
-          var color = '#';
-          for (var i = 0; i < 6; i++ ) {
-              color += letters[Math.floor(Math.random() * 16)];
-          }
-          return { color: color, weight: 5};
+          return { color: '#FFF', weight: 1};
         },
         onEachFeature: function( feature, layer ){
           layer.bindPopup(

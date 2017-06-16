@@ -49,9 +49,13 @@
                     <td>{{ $r -> desa -> kecamatan -> kecamatan.', '.$r -> desa -> desa}}</td>
                     <td>
                       @if($r -> status == 1)
-                      Diajukan
+                      Usulan
                       @elseif($r -> status == 2)
-                      Diverifikasi
+                      Verifikasi
+                      @elseif($r -> status == 3)
+                      Program
+                      @elseif($r -> status == 4)
+                      Publish
                       @endif
                     </td>
                     <td align="center">
