@@ -14,6 +14,7 @@
 Route::get('/', 'FEController@index');
 Route::get('/kontak', 'FEController@kontak');
 Route::get('/rtlh', 'FEController@rtlh');
+Route::get('/rtlh/{id}', 'FEController@detail');
 Route::get('/program', 'FEController@program');
 Route::get('/lokasi', 'FEController@lokasi');
 Route::group(['prefix' => 'ajax'], function () {

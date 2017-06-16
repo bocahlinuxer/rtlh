@@ -52,6 +52,45 @@ class FEController extends Controller
         return view('rtlh')->with('rtlh', $rtlh);
     }
 
+    public function detail($id)
+    {
+        $rtlh = Rtlh::with(
+            [
+                'created_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'updated_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'verified_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'pekerjaan' => function($q)
+                {
+                    $q->select('id_pekerjaan', 'pekerjaan');
+                },
+                'desa' => function($q)
+                {
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
+                },
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
+                },
+                'foto_rtlh',
+                'opd' => function($q)
+                {
+                    $q->select('id_opd', 'opd');
+                },
+            ]
+        )->find($id);
+    
+        return view('rtlh-detail')->with('rtlh', $rtlh);
+    }
+
     public function program()
     {
     	$rtlh = Rtlh::with(
