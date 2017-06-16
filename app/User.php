@@ -47,6 +47,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function desa()
+    {
+        return $this->belongsTo('App\Desa', 'id_desa');
+    }
+
     //for logging
     public function created_user()
     {

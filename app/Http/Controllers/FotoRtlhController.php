@@ -15,24 +15,13 @@ use Illuminate\Support\Facades\Storage;
 class FotoRtlhController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('superadmin');
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create($idrtlh)
     {
-        return view('fotortlh-create')->with('idrtlh', $idrtlh);
+        return view('admin.superadmin.fotortlh-create')->with('idrtlh', $idrtlh);
     }
 
     /**
@@ -47,7 +36,7 @@ class FotoRtlhController extends Controller
         $validator = Validator::make($request->all(), FotoRtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('rtlh/'.$idrtlh.'/fotortlh/create')
+            return redirect('superadmin/rtlh/'.$idrtlh.'/fotortlh/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -89,7 +78,7 @@ class FotoRtlhController extends Controller
         }
 
         Session::flash('msgsave', 'Tambah Foto RTLH berhasil');
-        return redirect('rtlh/'.$idrtlh);
+        return redirect('superadmin/rtlh/'.$idrtlh);
     }
 
     /**
@@ -100,7 +89,7 @@ class FotoRtlhController extends Controller
      */
     public function edit($idrtlh, $id)
     {
-        return view('fotortlh-edit')->with(array(
+        return view('admin.superadmin.fotortlh-edit')->with(array(
             'idrtlh' => $idrtlh,
             'id' => $id
             ));
@@ -119,7 +108,7 @@ class FotoRtlhController extends Controller
         $validator = Validator::make($request->all(), FotoRtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('rtlh/'.$idrtlh.'/fotortlh/'.$id.'/edit')
+            return redirect('superadmin/rtlh/'.$idrtlh.'/fotortlh/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -154,7 +143,7 @@ class FotoRtlhController extends Controller
         }
 
         Session::flash('msgedit', 'Ubah Foto RTLH berhasil');
-        return redirect('rtlh/'.$idrtlh);
+        return redirect('superadmin/rtlh/'.$idrtlh);
     }
 
     /**
@@ -170,6 +159,6 @@ class FotoRtlhController extends Controller
         $foto->delete();
 
         Session::flash('msgdelete', 'Hapus Foto RTLH berhasil');
-        return redirect('rtlh/'.$idrtlh);
+        return redirect('superadmin/rtlh/'.$idrtlh);
     }
 }

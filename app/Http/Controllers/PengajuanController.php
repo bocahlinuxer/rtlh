@@ -14,16 +14,6 @@ use Auth;
 class PengajuanController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -57,9 +47,9 @@ class PengajuanController extends Controller
                     $q->select('id_kecamatan', 'kecamatan');
                 }
             ]
-        )->where('status', '<>', 0)->where('created_by', Auth::user()->id_user)->get();
+        )->where('status', 1)->where('id_desa', Auth::user()->desa->id_desa)->get();
         
-        return view('pengajuan')->with('rtlh', $rtlh);
+        return view('admin.perbekel.pengajuan')->with('rtlh', $rtlh);
     }
 
     /**
@@ -71,7 +61,7 @@ class PengajuanController extends Controller
     {
         $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
-        return view('pengajuan-create')->with(array(
+        return view('admin.perbekel.pengajuan-create')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan
             ));
@@ -89,7 +79,7 @@ class PengajuanController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('pengajuan/create')
+            return redirect('adminperbekel/pengajuan/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -127,7 +117,7 @@ class PengajuanController extends Controller
         $rtlh->save();
 
         Session::flash('msgsave', 'Pengajuan RTLH berhasil');
-        return redirect('pengajuan');
+        return redirect('adminperbekel/pengajuan');
     }
 
     /**
@@ -168,9 +158,7 @@ class PengajuanController extends Controller
             ]
         )->find($id);
 
-        $this->authorize('view', $rtlh);
-
-        return view('pengajuan-detail')->with('rtlh', $rtlh);
+        return view('admin.perbekel.pengajuan-detail')->with('rtlh', $rtlh);
     }
 
     /**
@@ -185,9 +173,7 @@ class PengajuanController extends Controller
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
         $rtlh = Rtlh::find($id);
 
-        $this->authorize('view', $rtlh);
-
-        return view('pengajuan-edit')->with(array(
+        return view('admin.perbekel.pengajuan-edit')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan,
             "rtlh" => $rtlh
@@ -207,7 +193,7 @@ class PengajuanController extends Controller
         $validator = Validator::make($request->all(), Rtlh::$rules);
 
         if ($validator->fails()) {
-            return redirect('pengajuan/'.$id.'/edit')
+            return redirect('adminperbekel/pengajuan/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -218,8 +204,6 @@ class PengajuanController extends Controller
 
         //buat variable user
         $rtlh = Rtlh::find($id);
-
-        $this->authorize('update', $rtlh);
 
         $rtlh->nama = $request->nama;
         $rtlh->nik = $request->nik;
@@ -247,7 +231,7 @@ class PengajuanController extends Controller
         $rtlh->save();
 
         Session::flash('msgedit', 'Ubah pengajuan RTLH berhasil');
-        return redirect('pengajuan/'.$rtlh->id_rtlh);
+        return redirect('adminperbekel/pengajuan/'.$rtlh->id_rtlh);
     }
 
     /**
@@ -264,8 +248,6 @@ class PengajuanController extends Controller
         //buat variable user
         $rtlh = Rtlh::find($id);
 
-        $this->authorize('delete', $rtlh);
-        
         $rtlh->status = 0;
 
         //set created by
@@ -275,6 +257,6 @@ class PengajuanController extends Controller
         $rtlh->save();
 
         Session::flash('msgdelete', 'Hapus pengajuan RTLH berhasil');
-        return redirect('pengajuan');
+        return redirect('adminperbekel/pengajuan');
     }
 }

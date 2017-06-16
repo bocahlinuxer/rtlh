@@ -41,15 +41,15 @@
     <!-- Logo -->
     <a href="{{url('')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>SI</b>R</span>
+      <span class="logo-mini">RTLH</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Sistem</b>RTLH</span>
+      <span class="logo-lg"><b>e</b>-RTLH</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
     </nav>
@@ -58,100 +58,41 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="{{asset('assets/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>{{Auth::user()->nama}}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> 
-          @if(Auth::user()->tipe == 1)
-          Super Admin
-          @elseif(Auth::user()->tipe == 2)
-          Admin Perbekel
-          @elseif(Auth::user()->tipe == 3)
-          Admin Verifikasi
-          @elseif(Auth::user()->tipe == 4)
-          Admin Kepala
-          @endif
-          </a>
-        </div>
-      </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
-        <li id="dashboard-menu">
+        <li id="beranda-menu">
           <a href="{{url('')}}">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Beranda</span>
           </a>
         </li>
-        @if(Auth::user()->tipe == 1)
-        <li class="header">MASTER DATA</li>
-        <li id="user-menu">
-          <a href="{{url('user')}}">
-            <i class="fa fa-users"></i> <span>Pengguna</span>
+        <li id="kontak-menu">
+          <a href="{{url('kontak')}}">
+            <i class="fa fa-dashboard"></i> <span>Kontak</span>
           </a>
         </li>
-        <li id="pekerjaan-menu">
-          <a href="{{url('pekerjaan')}}">
-            <i class="fa fa-briefcase"></i> <span>Pekerjaan</span>
-          </a>
-        </li> 
-        @endif
         <li class="header">RTLH</li>
-        @if(Auth::user()->tipe == 1)
         <li id="rtlh-menu">
           <a href="{{url('rtlh')}}">
-            <i class="fa fa-home"></i> <span>RTLH</span>
+            <i class="fa fa-home"></i> <span>Data RTLH</span>
           </a>
         </li>
-        @endif
-        @if(Auth::user()->tipe == 2)
-        <li id="pengajuan-menu">
-          <a href="{{url('pengajuan')}}">
-            <i class="fa fa-home"></i> <span>Pengajuan RTLH</span>
+        <li id="program-menu">
+          <a href="{{url('program')}}">
+            <i class="fa fa-home"></i> <span>Program</span>
           </a>
         </li>
-        @endif
-        @if(Auth::user()->tipe == 3)
-        <li id="verifikasi-menu">
-          <a href="{{url('verifikasi')}}">
-            <i class="fa fa-home"></i> <span>Verifikasi RTLH</span>
+        <li id="lokasi-menu">
+          <a href="{{url('lokasi')}}">
+            <i class="fa fa-home"></i> <span>Lokasi</span>
           </a>
         </li>
-        @endif
-        @if(Auth::user()->tipe == 3 || Auth::user()->tipe == 4)
-        <li id="terverifikasi-menu">
-          <a href="{{url('terverifikasi')}}">
-            <i class="fa fa-home"></i> <span>RTLH Terverifikasi</span>
+        <li class="header">Login</li>
+        <li id="login-menu">
+          <a href="{{url('login')}}">
+            <i class="fa fa-home"></i> <span>Login</span>
           </a>
         </li>
-        @endif
-        @if(Auth::user()->tipe == 4)
-        <li id="rekap-menu">
-          <a href="{{url('rekap')}}">
-            <i class="fa fa-home"></i> <span>Rekap Penanganan RTLH</span>
-          </a>
-        </li>
-        @endif
-        <li id="peta-menu">
-          <a href="{{url('peta')}}">
-            <i class="fa fa-map"></i> <span>Peta</span>
-          </a>
-        </li>
-        <li class="header">OPTION</li>
-        <li>
-            <a href="{{ url('logout')}}"
-                onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();">
-                <i class="fa fa-user"></i> <span>Logout</span>
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-          </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -174,7 +115,7 @@
 <!-- FastClick -->
 <script src="{{asset('assets/plugins/fastclick/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('assets/dist/js/adminlte.js')}}"></script>
+<script src="{{asset('assets/dist/js/app.min.js')}}"></script>
 <!-- Sparkline -->
 <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
 <!-- jvectormap -->

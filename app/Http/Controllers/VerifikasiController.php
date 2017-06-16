@@ -13,16 +13,6 @@ use Carbon\Carbon;
 class VerifikasiController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -58,7 +48,7 @@ class VerifikasiController extends Controller
             ]
         )->where('status', '=', 1)->get();
         
-        return view('verifikasi-belum')->with('rtlh', $rtlh);
+        return view('admin.verifikasi.verifikasi-belum')->with('rtlh', $rtlh);
     }
 
     /**
@@ -101,11 +91,11 @@ class VerifikasiController extends Controller
 
         if($rtlh != null)
         {
-        	return view('verifikasi-detail')->with('rtlh', $rtlh);
+        	return view('admin.verifikasi.verifikasi-detail')->with('rtlh', $rtlh);
         }
         else
         {
-        	return view('errors/204');
+        	return view('admin.verifikasi.errors/204');
         }
     }
 
@@ -116,14 +106,61 @@ class VerifikasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function crosscheck($id)
+    {
+        $rtlh = Rtlh::with(
+            [
+                'created_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'updated_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'verified_by_user' => function($q)
+                {
+                    $q->select('id_user', 'nama');
+                },
+                'pekerjaan' => function($q)
+                {
+                    $q->select('id_pekerjaan', 'pekerjaan');
+                },
+                'desa' => function($q)
+                {
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
+                },
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
+                },
+                'foto_rtlh'
+            ]
+        )->find($id);
+
+        return view('admin.verifikasi.verifikasi-crosscheck')->with('rtlh', $rtlh);
+    }
+
     public function verifikasi(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), array(
+            "latitude" => 'required|numeric',
+            "longitude" => 'required|numeric'
+            ));
+
+        if ($validator->fails()) {
+            return redirect('adminverifikasi/verifikasi/'.$id.'/crosscheck')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         //ambil user yang login
         $userlogin = Auth::user();
 
         //buat variable user
         $rtlh = Rtlh::find($id);
-
+        $rtlh->latitude = $request->latitude;
+        $rtlh->longitude = $request->longitude;
         $rtlh->status = 2;
 
         //set created by
@@ -134,7 +171,7 @@ class VerifikasiController extends Controller
         $rtlh->save();
 
         Session::flash('msgedit', 'verifikasi pengajuan RTLH berhasil');
-        return redirect('verifikasi/'.$rtlh->id_rtlh);
+        return redirect('adminverifikasi/verifikasi/'.$rtlh->id_rtlh);
     }
 
     /**
@@ -173,7 +210,7 @@ class VerifikasiController extends Controller
             ]
         )->where('status', '=', 2)->get();
         
-        return view('verifikasi-sudah')->with('rtlh', $rtlh);
+        return view('admin.verifikasi.verifikasi-sudah')->with('rtlh', $rtlh);
     }
 
     /**
@@ -216,11 +253,11 @@ class VerifikasiController extends Controller
 
         if($rtlh != null)
         {
-        	return view('verifikasi-sudah-detail')->with('rtlh', $rtlh);
+        	return view('admin.verifikasi.verifikasi-sudah-detail')->with('rtlh', $rtlh);
         }
         else
         {
-        	return view('errors/204');
+        	return view('admin.verifikasi.errors/204');
         }
     }
 }

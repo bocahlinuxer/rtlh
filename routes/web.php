@@ -11,42 +11,94 @@
 |
 */
 
-Route::get('/', 'DashboardController@index');
-
-Route::group(['prefix' => 'peta/ajax'], function () {
-	Route::get('rumah', 'MapsController@ajax_rumah');    
+Route::get('/', 'FEController@index');
+Route::get('/kontak', 'FEController@kontak');
+Route::get('/rtlh', 'FEController@rtlh');
+Route::get('/program', 'FEController@program');
+Route::get('/lokasi', 'FEController@lokasi');
+Route::group(['prefix' => 'ajax'], function () {
+	Route::get('rumah', 'FEController@ajax_rumah');    
 });
 
-Route::get('peta', 'MapsController@index');
-Route::resource('user', 'UserController');
-Route::resource('pekerjaan', 'PekerjaanController');
+Route::group(['prefix' => 'superadmin', 'middleware' => ['auth', 'superadmin']], function () {
+	Route::get('/', 'DashboardController@indexsuperadmin');
+	Route::resource('user', 'UserController');
+	Route::resource('pekerjaan', 'PekerjaanController');
+	
+	//rtlh
+	Route::resource('rtlh', 'RtlhController');
+	Route::resource('rtlh/{idrtlh}/fotortlh', 'FotoRtlhController', ['except' => [
+	    'index', 'show'
+	]]);
 
-//pengajuan rtlh
-Route::resource('pengajuan', 'PengajuanController');
-Route::resource('pengajuan/{idrtlh}/fotortlh', 'PengajuanFotoController', ['except' => [
-    'index', 'show'
-]]);
+	//program
+	Route::get('program', 'PenangananController@rekapsuperadmin');
 
-//admin rtlh
-Route::resource('rtlh', 'RtlhController');
-Route::resource('rtlh/{idrtlh}/fotortlh', 'FotoRtlhController', ['except' => [
-    'index', 'show'
-]]);
+	//peta
+	Route::get('lokasi', 'MapsController@indexsuperadmin');
+	Route::group(['prefix' => 'ajax'], function () {
+		Route::get('rumah', 'MapsController@ajax_rumah_superadmin');    
+	});
+});
 
-Route::get('verifikasi', 'VerifikasiController@index');
-Route::get('verifikasi/{id}', 'VerifikasiController@detail');
-Route::put('verifikasi/{id}', 'VerifikasiController@verifikasi');
-Route::get('terverifikasi', 'VerifikasiController@sudah');
-Route::get('terverifikasi/{id}', 'VerifikasiController@detailsudah');
+Route::group(['prefix' => 'adminperbekel', 'middleware' => ['auth', 'adminperbekel']], function () {
+	Route::get('/', 'DashboardController@indexperbekel');
 
-Route::resource('terverifikasi/{idrtlh}/penanganan', 'PenangananController');
+	Route::get('/rtlh', 'RtlhController@indexperbekel');
+	Route::get('/rtlh/{id}', 'RtlhController@detailperbekel');	
 
-Route::get('rekap', 'PenangananController@rekap');
+	Route::resource('pengajuan', 'PengajuanController');
+	Route::resource('pengajuan/{idrtlh}/fotortlh', 'PengajuanFotoController', ['except' => [
+	    'index', 'show'
+	]]);
 
-Route::group(['prefix' => 'admin'], function () {
-    
+	Route::get('/penanganan', 'PenangananController@rekapperbekel');
+
+	//peta
+	Route::get('lokasi', 'MapsController@indexperbekel');
+	Route::group(['prefix' => 'ajax'], function () {
+		Route::get('rumah', 'MapsController@ajax_rumah_perbekel');    
+	});
+});
+
+Route::group(['prefix' => 'adminverifikasi', 'middleware' => ['auth', 'adminverifikasi']], function () {
+	Route::get('/', 'DashboardController@indexverifikasi');
+
+	Route::get('verifikasi', 'VerifikasiController@index');
+	Route::get('verifikasi/{id}', 'VerifikasiController@detail');
+	Route::get('verifikasi/{id}/crosscheck', 'VerifikasiController@crosscheck');
+	Route::put('verifikasi/{id}/verify', 'VerifikasiController@verifikasi');
+	Route::get('terverifikasi', 'VerifikasiController@sudah');
+	Route::get('terverifikasi/{id}', 'VerifikasiController@detailsudah');
+
+	//peta
+	Route::get('lokasi', 'MapsController@indexverifikasi');
+	Route::group(['prefix' => 'ajax'], function () {
+		Route::get('rumah', 'MapsController@ajax_rumah_verifikasi');    
+	});
+});
+
+
+
+
+Route::group(['prefix' => 'adminkepala', 'middleware' => ['auth', 'adminkepala']], function () {
+	Route::get('/', 'DashboardController@indexkepala');
+
+	Route::get('/rtlh', 'RtlhController@indexkepala');
+	Route::get('/rtlh/{id}', 'RtlhController@detailkepala');
+
+	//penanganan
+	Route::get('/rtlh/{id}/program', 'PenangananController@editkepala');
+	Route::put('/rtlh/{id}/program', 'PenangananController@updatekepala');
+	Route::put('/rtlh/{id}/publish', 'PenangananController@publishkepala');
+
+	Route::get('/program', 'PenangananController@rekapkepala');
+
+	//peta
+	Route::get('lokasi', 'MapsController@indexkepala');
+	Route::group(['prefix' => 'ajax'], function () {
+		Route::get('rumah', 'MapsController@ajax_rumah_kepala');    
+	});
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

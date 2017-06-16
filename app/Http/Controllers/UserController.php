@@ -7,21 +7,11 @@ use Illuminate\Http\Request;
 use Validator;
 use Session;
 use App\User;
+use App\Kecamatan;
 use Auth;
 
 class UserController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('superadmin');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -38,13 +28,21 @@ class UserController extends Controller
                 'updated_by_user' => function($q)
                 {
                     $q->select('id_user', 'nama');
+                },
+                'desa' => function($q)
+                {
+                    $q->select('id_desa', 'desa', 'id_kecamatan');
+                },
+                'desa.kecamatan' => function($q)
+                {
+                    $q->select('id_kecamatan', 'kecamatan');
                 }
             ]
         )->where('status', '<>', 0)->get();
         
         //buat ngetes
         //return json_encode($users);
-        return view('user')->with('users', $users);
+        return view('admin.superadmin.user')->with('users', $users);
     }
 
     /**
@@ -54,7 +52,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user-create');
+        $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
+        return view('admin.superadmin.user-create')->with('kecamatan', $kecamatan);
     }
 
     /**
@@ -69,7 +68,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), User::$rules);
 
         if ($validator->fails()) {
-            return redirect('user/create')
+            return redirect('superadmin/user/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -84,6 +83,12 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->password = bcrypt($request->password);
         $user->tipe = $request->tipe;
+
+        if($user->tipe == 2)
+        {
+            $user->id_desa = $request->desa;
+        }
+
         $user->status = 1;
 
         //set created by
@@ -93,7 +98,7 @@ class UserController extends Controller
         $user->save();
 
         Session::flash('msgsave', 'Tambah pengguna berhasil');
-        return redirect('user');
+        return redirect('superadmin/user');
     }
 
     /**
@@ -105,7 +110,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        return redirect('user');
+        return redirect('superadmin/user');
     }
 
     /**
@@ -116,6 +121,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
         $user = User::with(
             [
                 'created_by_user' => function($q)
@@ -129,7 +135,10 @@ class UserController extends Controller
             ]
         )->get()->find($id);
 
-        return view('user-edit')->with('user', $user);
+        return view('admin.superadmin.user-edit')->with(array(
+            'kecamatan' => $kecamatan,
+            'user' => $user
+            ));
     }
 
     /**
@@ -145,7 +154,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), User::$updaterules);
 
         if ($validator->fails()) {
-            return redirect('user/'.$id.'/edit')
+            return redirect('superadmin/user/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -159,6 +168,12 @@ class UserController extends Controller
         $user->nama = $request->nama;
         $user->username = $request->username;
         $user->tipe = $request->tipe;
+
+        if($user->tipe == 2)
+        {
+            $user->id_desa = $request->desa;
+        }
+
         $user->status = 1;
 
         if($request->password != "")
@@ -173,7 +188,7 @@ class UserController extends Controller
         $user->save();
         
         Session::flash('msgedit', 'Ubah pengguna berhasil');
-        return redirect('user');
+        return redirect('superadmin/user');
     }
 
     /**
@@ -196,6 +211,6 @@ class UserController extends Controller
         $user->save();
 
         Session::flash('msgdelete', 'Hapus pengguna berhasil');
-        return redirect('user');
+        return redirect('superadmin/user');
     }
 }

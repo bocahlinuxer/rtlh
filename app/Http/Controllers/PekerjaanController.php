@@ -12,17 +12,6 @@ use Auth;
 class PekerjaanController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('superadmin');
-    }
-    
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -44,7 +33,7 @@ class PekerjaanController extends Controller
         
         //buat ngetes
         //return json_encode($pekerjaans);
-        return view('pekerjaan')->with('pekerjaan', $pekerjaan);
+        return view('admin.superadmin.pekerjaan')->with('pekerjaan', $pekerjaan);
     }
 
     /**
@@ -54,7 +43,7 @@ class PekerjaanController extends Controller
      */
     public function create()
     {
-        return view('pekerjaan-create');
+        return view('admin.superadmin.pekerjaan-create');
     }
 
     /**
@@ -69,7 +58,7 @@ class PekerjaanController extends Controller
         $validator = Validator::make($request->all(), Pekerjaan::$rules);
 
         if ($validator->fails()) {
-            return redirect('pekerjaan/create')
+            return redirect('superadmin/pekerjaan/create')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -90,7 +79,7 @@ class PekerjaanController extends Controller
         $pekerjaan->save();
 
         Session::flash('msgsave', 'Tambah pekerjaan berhasil');
-        return redirect('pekerjaan');
+        return redirect('superadmin/pekerjaan');
     }
 
     /**
@@ -102,7 +91,7 @@ class PekerjaanController extends Controller
     public function show($id)
     {
         //
-        return redirect('pekerjaan');
+        return redirect('superadmin/pekerjaan');
     }
 
     /**
@@ -126,7 +115,7 @@ class PekerjaanController extends Controller
             ]
         )->get()->find($id);
 
-        return view('pekerjaan-edit')->with('pekerjaan', $pekerjaan);
+        return view('admin.superadmin.pekerjaan-edit')->with('pekerjaan', $pekerjaan);
     }
 
     /**
@@ -142,7 +131,7 @@ class PekerjaanController extends Controller
         $validator = Validator::make($request->all(), Pekerjaan::$rules);
 
         if ($validator->fails()) {
-            return redirect('pekerjaan/'.$id.'/edit')
+            return redirect('superadmin/pekerjaan/'.$id.'/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -163,7 +152,7 @@ class PekerjaanController extends Controller
         $pekerjaan->save();
         
         Session::flash('msgedit', 'Ubah pengguna berhasil');
-        return redirect('pekerjaan');
+        return redirect('superadmin/pekerjaan');
     }
 
     /**
@@ -186,6 +175,6 @@ class PekerjaanController extends Controller
         $pekerjaan->save();
 
         Session::flash('msgdelete', 'Hapus pengguna berhasil');
-        return redirect('pekerjaan');
+        return redirect('superadmin/pekerjaan');
     }
 }
