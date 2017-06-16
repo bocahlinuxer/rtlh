@@ -70,4 +70,9 @@ class Rtlh extends Model
     {
         return $this->belongsTo('App\User', 'penanganan_by');
     }
+
+    public function published_by_user()
+    {
+        return $this->belongsTo('App\User', 'publish_by');
+    }
 }

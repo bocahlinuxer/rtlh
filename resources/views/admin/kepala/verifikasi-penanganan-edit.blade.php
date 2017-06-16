@@ -1,23 +1,23 @@
-@extends('admin.template')
+@extends('admin.kepala.template')
 @section('content')
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Ubah Penanganan
+      Penanganan RTLH
     </h1>
     <ol class="breadcrumb">
-      <li><a href="{{url('admin/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{url('admin/terverifikasi/'.$idrtlh.'/penanganan')}}">Penanganan</a></li>
-      <li class="active">Ubah</li>
+      <li><a href="{{url('adminkepala/')}}"><i class="fa fa-dashboard"></i> Beranda</a></li>
+      <li><a href="{{url('adminkepala/rtlh/'.$id)}}">Data RTLH</a></li>
+      <li class="active">Penanganan</li>
     </ol>
   </section>
 
   <!-- Main content -->
   <section class="content">
     <!-- Default box -->
-    {!! Form::open(array('url' => url('admin/terverifikasi/'.$idrtlh.'/penanganan/'.$id), 'role' => 'form', 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
+    {!! Form::open(array('url' => url('adminkepala/rtlh/'.$id.'/program'), 'role' => 'form', 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
       <div class="box box-success" style="width: 50%">
         <div class="box-header with-border">
           <h3 class="box-title">Form Penanganan</h3>
@@ -56,7 +56,7 @@
             <label class="control-label" for="id_opd">OPD</label>
             <select class="form-control" id="id_opd" name="id_opd">
               @foreach($opd as $o)
-              <option value="{{$o->id_opd}}" @if($penanganan->opd->id_opd == $o->id_opd) selected @endif>{{$o->opd}}</option>
+              <option value="{{$o->id_opd}}" @if($rtlh->opd != null) @if($rtlh->opd->id_opd == $o->id_opd) selected @endif @endif>{{$o->opd}}</option>
               @endforeach
             </select>
           </div>
@@ -64,7 +64,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <a type="button" class="btn btn-danger" href="{{url('admin/terverifikasi/'.$idrtlh.'/penanganan')}}">Kembali</a>
+          <a type="button" class="btn btn-danger" href="{{url('adminkepala/rtlh/'.$id)}}">Kembali</a>
           <button type="submit" class="btn btn-primary pull-right">Simpan</button>
         </div>
       </div>

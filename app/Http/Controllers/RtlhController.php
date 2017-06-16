@@ -391,7 +391,11 @@ class RtlhController extends Controller
                 {
                     $q->select('id_kecamatan', 'kecamatan');
                 },
-                'foto_rtlh'
+                'foto_rtlh',
+                'opd' => function($q)
+                {
+                    $q->select('id_opd', 'opd');
+                },
             ]
         )->find($id);
     

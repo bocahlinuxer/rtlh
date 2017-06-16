@@ -60,8 +60,12 @@
                     <td align="center">
                       <div class="btn-group-vertical">
                         <a type="button" class="btn btn-default" href="{{url('adminkepala/rtlh/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
-                        <a type="button" class="btn btn-success" href="{{url('adminkepala/penanganan/'.$r->id_rtlh.'/penanganan')}}"><i class="fa fa-wrench"> Penanganan</i></a>
+                        @if($r->status == 2)
+                        <a type="button" class="btn btn-success" href="{{url('adminkepala/rtlh/'.$r->id_rtlh.'/program')}}"><i class="fa fa-wrench"> Penanganan</i></a>
+                        @endif
+                        @if($r->status == 3)
                         <a type="button" class="btn btn-warning" href="{{url('adminkepala/publikasi/'.$r->id_rtlh.'/penanganan')}}"><i class="fa fa-map-marker"> Publikasi</i></a>
+                        @endif
                       </div>
                     </td>
                   </tr>

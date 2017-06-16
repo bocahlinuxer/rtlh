@@ -8,13 +8,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        {!! Form::open(array('url' => 'adminverifikasi/'.$rtlh->id_rtlh, 'method' => 'put')) !!}
         Detail Pengajuan Rumah Tidak Layak Huni 
-        {{-- <a type="button" class="btn btn-primary pull-right" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Verifikasi</i></a> --}}
         @if($rtlh->status == 1)
-        <button type="submit" onclick="return confirm('Apakah anda yakin memverifikasi data?');" class="btn btn-success pull-right"><i class="fa fa-edit"> Verifikasi</i></button>
+        <a type="button" class="btn btn-primary pull-right" href="{{url('adminverifikasi/verifikasi/'.$rtlh->id_rtlh.'/crosscheck')}}"><i class="fa fa-check"> Verifikasi</i></a>
         @endif
-        {!! Form::close() !!}
       </h1>
       
     </section>
@@ -190,6 +187,20 @@
               <br>
               &nbsp {{$rtlh->latitude.', '.$rtlh->longitude}}
               <br>
+
+              <br>
+              <strong>Status</strong>
+              <br>
+              @if($rtlh->status == 1)
+              &nbsp Usulan
+              @elseif($rtlh->status == 2)
+              &nbsp Verifikasi
+              @elseif($rtlh->status == 3)
+              &nbsp Program
+              @elseif($rtlh->status == 4)
+              &nbsp Publish
+              @endif
+              <br>
             </div>
             <!-- /.box-body -->
           </div>
@@ -225,7 +236,7 @@
                 @foreach($rtlh->foto_rtlh as $u)
                   <tr>
                     <td>{{ $no }}</td>
-                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-width: 300px"></td>
+                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-height: 300px"></td>
                     <td>{{ $u -> created_at or ''}}</td>
                     <td>{{ $u -> updated_at or ''}}</td>
                     {{-- <td align="center">

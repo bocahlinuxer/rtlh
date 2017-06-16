@@ -184,6 +184,20 @@
               <br>
               &nbsp {{$rtlh->latitude.', '.$rtlh->longitude}}
               <br>
+
+              <br>
+              <strong>Status</strong>
+              <br>
+              @if($rtlh->status == 1)
+              &nbsp Usulan
+              @elseif($rtlh->status == 2)
+              &nbsp Verifikasi
+              @elseif($rtlh->status == 3)
+              &nbsp Program
+              @elseif($rtlh->status == 4)
+              &nbsp Publish
+              @endif
+              <br>
             </div>
             <!-- /.box-body -->
           </div>
@@ -219,7 +233,7 @@
                 @foreach($rtlh->foto_rtlh as $u)
                   <tr>
                     <td>{{ $no }}</td>
-                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-width: 300px"></td>
+                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-height: 300px"></td>
                     <td>{{ $u -> created_at or ''}}</td>
                     <td>{{ $u -> updated_at or ''}}</td>
                     {{-- <td align="center">

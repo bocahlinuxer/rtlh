@@ -143,12 +143,24 @@ class VerifikasiController extends Controller
 
     public function verifikasi(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), array(
+            "latitude" => 'required|numeric',
+            "longitude" => 'required|numeric'
+            ));
+
+        if ($validator->fails()) {
+            return redirect('adminverifikasi/verifikasi/'.$id.'/crosscheck')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         //ambil user yang login
         $userlogin = Auth::user();
 
         //buat variable user
         $rtlh = Rtlh::find($id);
-
+        $rtlh->latitude = $request->latitude;
+        $rtlh->longitude = $request->longitude;
         $rtlh->status = 2;
 
         //set created by

@@ -173,8 +173,6 @@ class PengajuanController extends Controller
         $pekerjaan = Pekerjaan::where('status', '<>', 0)->get();
         $rtlh = Rtlh::find($id);
 
-        $this->authorize('view', $rtlh);
-
         return view('admin.perbekel.pengajuan-edit')->with(array(
             "pekerjaan" => $pekerjaan,
             "kecamatan" => $kecamatan,

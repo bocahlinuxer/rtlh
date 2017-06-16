@@ -66,7 +66,8 @@ Route::group(['prefix' => 'adminverifikasi', 'middleware' => ['auth', 'adminveri
 
 	Route::get('verifikasi', 'VerifikasiController@index');
 	Route::get('verifikasi/{id}', 'VerifikasiController@detail');
-	Route::put('verifikasi/{id}', 'VerifikasiController@verifikasi');
+	Route::get('verifikasi/{id}/crosscheck', 'VerifikasiController@crosscheck');
+	Route::put('verifikasi/{id}/verify', 'VerifikasiController@verifikasi');
 	Route::get('terverifikasi', 'VerifikasiController@sudah');
 	Route::get('terverifikasi/{id}', 'VerifikasiController@detailsudah');
 
@@ -85,6 +86,11 @@ Route::group(['prefix' => 'adminkepala', 'middleware' => ['auth', 'adminkepala']
 
 	Route::get('/rtlh', 'RtlhController@indexkepala');
 	Route::get('/rtlh/{id}', 'RtlhController@detailkepala');
+
+	//penanganan
+	Route::get('/rtlh/{id}/program', 'PenangananController@editkepala');
+	Route::put('/rtlh/{id}/program', 'PenangananController@updatekepala');
+	Route::put('/rtlh/{id}/publish', 'PenangananController@publishkepala');
 
 	Route::get('/program', 'PenangananController@rekapkepala');
 

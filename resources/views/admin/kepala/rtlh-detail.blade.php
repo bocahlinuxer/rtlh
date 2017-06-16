@@ -8,7 +8,17 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
+        @if($rtlh->status == 2)
         Detail Rumah Tidak Layak Huni
+        <a class="btn btn-success pull-right" href="{{url('adminkepala/rtlh/'.$rtlh->id_rtlh.'/program')}}"><i class="fa fa-wrench"> Penanganan</i></a>
+        @elseif($rtlh->status == 3)
+        {!! Form::open(array('url' => 'adminkepala/rtlh/'.$rtlh->id_rtlh.'/publish', 'method' => 'put')) !!}
+        Detail Rumah Tidak Layak Huni
+        <button type="submit" onclick="return confirm('Apakah anda yakin publish data?');" class="btn btn-warning pull-right"><i class="fa fa-map-marker"> Publikasi</i></button>
+        {!! Form::close() !!}
+        @else
+        Detail Rumah Tidak Layak Huni
+        @endif
       </h1>
     </section>
 
@@ -166,6 +176,20 @@
               <br>
               &nbsp {{$rtlh->latitude.', '.$rtlh->longitude}}
               <br>
+
+              <br>
+              <strong>Status</strong>
+              <br>
+              @if($rtlh->status == 1)
+              &nbsp Usulan
+              @elseif($rtlh->status == 2)
+              &nbsp Verifikasi
+              @elseif($rtlh->status == 3)
+              &nbsp Program
+              @elseif($rtlh->status == 4)
+              &nbsp Publish
+              @endif
+              <br>
             </div>
             <!-- /.box-body -->
           </div>
@@ -199,7 +223,7 @@
                 @foreach($rtlh->foto_rtlh as $u)
                   <tr>
                     <td>{{ $no }}</td>
-                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-width: 300px"></td>
+                    <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-height: 300px"></td>
                     <td>{{ $u -> created_at or ''}}</td>
                     <td>{{ $u -> updated_at or ''}}</td>
                   </tr>
@@ -223,6 +247,46 @@
           <!-- /.box -->
         </div>
       </div>
+
+      @if($rtlh->penanganan_by != null)
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                Program Penanganan
+              </h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <strong>OPD</strong>
+                  <br>
+                  &nbsp {{$rtlh->opd->opd}}
+                  <br>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <strong>Foto 0%</strong>
+                  <br>
+                  <img src="{{asset('img/penanganan/'.$rtlh->foto0)}}" class="img-responsive" style="max-height: 400px">
+                </div>
+                <div class="col-md-6">
+                  <strong>Foto 100%</strong>
+                  <br>
+                  <img src="{{asset('img/penanganan/'.$rtlh->foto100)}}" class="img-responsive" style="max-height: 400px">
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      @endif
     </section>
     <!-- /.content -->
   </div>
