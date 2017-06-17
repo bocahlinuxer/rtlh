@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-red sidebar-mini">
+<img src="{{asset('assets/dist/img/header2.jpg')}}" class="img-responsive">
 <div class="wrapper">
 
   <header class="main-header">
