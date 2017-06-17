@@ -7,6 +7,7 @@ use App\Rtlh;
 use App\Pekerjaan;
 use App\Opd;
 use App\User;
+use App\Kecamatan;
 
 
 class DashboardController extends Controller
@@ -55,20 +56,26 @@ class DashboardController extends Controller
         $usulan = Rtlh::where('status', 1)->count();
         $verifikasi = Rtlh::where('status', 2)->count();
         $penanganan = Rtlh::whereNotNull('penanganan_by')->count();
-        $pekerjaan = Pekerjaan::where('status', '<>', 0)->count();
-        $opd = Opd::where('status', '<>', 0)->count();
-        $adminperbekel = User::where('tipe', 2)->where('status', '<>', 0)->count();
-        $adminverifikasi = User::where('tipe', 3)->where('status', '<>', 0)->count();
         
+        //untuk chart
+        $kecamatan = Kecamatan::with('desa')->where('status', '<>', 0)->get();
+
+        for ($i=0; $i < $kecamatan->count(); $i++) {
+            $jumlahrumah = 0;
+
+            foreach ($kecamatan[$i]->desa as $desa) {
+                $jumlahrumah = $jumlahrumah + $desa->rtlh->where('status', '<>', 0)->count();
+            }
+
+            $kecamatan[$i]->jumlahrumah = $jumlahrumah;
+        }
+
         return view('admin.kepala.dashboard')->with(array(
             'rtlh' => $rtlh,
             'usulan' => $usulan,
             'verifikasi' => $verifikasi,
             'penanganan' => $penanganan,
-            'pekerjaan' => $pekerjaan,
-            'opd' => $opd,
-            'adminperbekel' => $adminperbekel,
-            'adminverifikasi' => $adminverifikasi
+            'kecamatan' => $kecamatan
             ));
     }
 }
