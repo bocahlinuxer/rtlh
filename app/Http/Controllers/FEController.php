@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Rtlh;
-use App\Penanganan;
 
 class FEController extends Controller
 {
@@ -15,12 +14,18 @@ class FEController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $rtlh = Rtlh::where('status', 4)->count();
+        $penanganan = Rtlh::whereNotNull('penanganan_by')->count();
+
+        return view('dashboard')->with(array(
+            'rtlh' => $rtlh,
+            'penanganan' => $penanganan
+            ));
     }
 
     public function rtlh()
     {
-    	$rtlh = Rtlh::with(
+        $rtlh = Rtlh::with(
             [
                 'created_by_user' => function($q)
                 {
