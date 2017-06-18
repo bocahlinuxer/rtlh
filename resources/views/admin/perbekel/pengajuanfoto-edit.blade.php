@@ -5,11 +5,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Ubah Foto Pengajuan RTLH
+      Ubah Foto Usulan RTLH
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('adminperbekel/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{url('adminperbekel/pengajuan/'.$idrtlh)}}">Foto Pengajuan RTLH</a></li>
+      <li><a href="{{url('adminperbekel/pengajuan/'.$idrtlh)}}">Foto Usulan RTLH</a></li>
       <li class="active">Ubah</li>
     </ol>
   </section>

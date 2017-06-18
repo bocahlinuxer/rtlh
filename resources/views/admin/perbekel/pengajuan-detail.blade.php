@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Detail Pengajuan Rumah Tidak Layak Huni <a type="button" class="btn btn-primary pull-right" href="{{url('adminperbekel/pengajuan/'.$rtlh->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Ubah Pengajuan</i></a>
+        Detail Usulan Rumah Tidak Layak Huni <a type="button" class="btn btn-primary pull-right" href="{{url('adminperbekel/pengajuan/'.$rtlh->id_rtlh.'/edit')}}"><i class="fa fa-edit"> Ubah Usulan</i></a>
       </h1>
     </section>
 

@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Detail Pengajuan Rumah Tidak Layak Huni 
+        Detail Usulan Rumah Tidak Layak Huni 
         @if($rtlh->status == 1)
         <a type="button" class="btn btn-primary pull-right" href="{{url('adminverifikasi/verifikasi/'.$rtlh->id_rtlh.'/crosscheck')}}"><i class="fa fa-check"> Verifikasi</i></a>
         @endif

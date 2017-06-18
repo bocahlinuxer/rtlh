@@ -5,11 +5,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Tambah Pengajuan Rumah Tidak Layak Huni
+      Tambah Usulan Rumah Tidak Layak Huni
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{url('adminperbekel/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{url('adminperbekel/pengajuan')}}">Pengajuan RTLH</a></li>
+      <li><a href="{{url('adminperbekel/pengajuan')}}">Usulan RTLH</a></li>
       <li class="active">Tambah</li>
     </ol>
   </section>

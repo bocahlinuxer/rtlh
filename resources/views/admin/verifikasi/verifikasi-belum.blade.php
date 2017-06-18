@@ -7,11 +7,11 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Daftar Pengajuan Rumah Tidak Layak Huni
+      <h1>Daftar Usulan Rumah Tidak Layak Huni
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('adminverifikasi/')}}"><i class="fa fa-dashboard"></i> Beranda</a></li>
-        <li class="active">Pengajuan RTLH</li>
+        <li class="active">Usulan RTLH</li>
       </ol>
     </section>
 

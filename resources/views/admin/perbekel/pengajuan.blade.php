@@ -7,11 +7,11 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Daftar Pengajuan Rumah Tidak Layak Huni
+      <h1>Daftar Usulan Rumah Tidak Layak Huni
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('adminperbekel//')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Pengajuan RTLH</li>
+        <li class="active">Usulan RTLH</li>
       </ol>
     </section>
 
@@ -48,7 +48,7 @@
             <div class="box-header">
               <h3 class="box-title">
               </h3>
-              <a type="button" class="btn btn-primary" href="{{url('adminperbekel/pengajuan/create')}}"><i class="fa fa-plus"> Pengajuan Baru</i></a>
+              <a type="button" class="btn btn-primary" href="{{url('adminperbekel/pengajuan/create')}}"><i class="fa fa-plus"> Usulan Baru</i></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
