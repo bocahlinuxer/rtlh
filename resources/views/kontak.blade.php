@@ -79,8 +79,6 @@
 <script>
   $(function () {
     $('#kontak-menu').addClass('active');
-
-    $("#example1").DataTable();
   });
 </script>
 @endsection
