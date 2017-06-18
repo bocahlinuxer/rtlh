@@ -88,7 +88,7 @@
         
         <li id="pengajuan-menu">
           <a href="{{url('adminperbekel/pengajuan')}}">
-            <i class="fa fa-upload"></i> <span>Pengajuan RTLH</span>
+            <i class="fa fa-upload"></i> <span>Usulan RTLH</span>
           </a>
         </li>
 
