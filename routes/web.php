@@ -103,3 +103,4 @@ Route::group(['prefix' => 'adminkepala', 'middleware' => ['auth', 'adminkepala']
 });
 
 Auth::routes();
+Route::post('/ajax/faktaintegritas', 'AjaxController@faktaintegritas');

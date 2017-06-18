@@ -33,7 +33,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Login untuk masuk.</p>
 
-    <form method="POST" action="{{ route('login') }}">
+    <form id="form" method="POST" action="{{ route('login') }}">
       {{ csrf_field() }}
       <div class="form-group has-feedback {{ $errors->has('username') ? ' has-error' : '' }}">
         <input id="username" type="text" class="form-control" placeholder="username" name="username" value="{{ old('username') }}" required autofocus>
@@ -63,7 +63,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button id="btnchechintegrity" onclick="integrity()" type="button" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
@@ -73,6 +73,28 @@
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Fakta Integritas</h4>
+      </div>
+      <div class="modal-body">
+        <p id="modalBody"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tidak Setuju</button>
+        <button id="btnintegritas" onclick="meong()" type="button" class="btn btn-primary">Setuju</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <!-- jQuery 2.2.3 -->
 <script src="{{asset('/assets/plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
@@ -88,6 +110,33 @@
       increaseArea: '20%' // optional
     });
   });
+
+  function integrity(evt)
+  {
+    $.post( "{{url('/ajax/faktaintegritas')}}", { 
+      u: $('#username').val(), 
+      p: $('#password').val(),
+      _token: "{{ csrf_token() }}" 
+    })
+    .done(function( data ) {
+      var user = JSON.parse(data);
+      if(user.tipe == 2)
+      {
+        $('#modalBody').html("");
+        $('#modalBody').html("dengan ini, apakah <b>"+user.nama+"</b> sebagai perbekel desa <b>"+user.desa+"</b> menyetujui untuk mengisi data RTLH di desa <b>"+user.desa+"</b>?");
+        $('#myModal').modal('show');
+      }
+      else
+      {
+        meong();
+      }
+    });
+  }
+
+  function meong()
+  {
+    $('#form').submit();
+  }
 </script>
 </body>
 </html>
