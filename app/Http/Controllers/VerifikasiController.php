@@ -208,7 +208,7 @@ class VerifikasiController extends Controller
                     $q->select('id_kecamatan', 'kecamatan');
                 }
             ]
-        )->where('status', '=', 2)->get();
+        )->where('status', '>=', 2)->get();
         
         return view('admin.verifikasi.verifikasi-sudah')->with('rtlh', $rtlh);
     }
@@ -249,7 +249,7 @@ class VerifikasiController extends Controller
                 },
                 'foto_rtlh'
             ]
-        )->where('status', '=', 2)->find($id);
+        )->where('status', '>=', 2)->find($id);
 
         if($rtlh != null)
         {
