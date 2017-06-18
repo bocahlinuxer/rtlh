@@ -53,7 +53,7 @@
             <span class="info-box-icon bg-green"><i class="fa fa-check"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Verifikasi RTLH</span>
+              <span class="info-box-text">RTLH Terverifikasi</span>
               <span class="info-box-number">{{$verifikasi}}</span>
             </div>
             <!-- /.info-box-content -->
@@ -66,7 +66,7 @@
             <span class="info-box-icon bg-yellow"><i class="fa fa-wrench"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Penanganan RTLH</span>
+              <span class="info-box-text">RTLH Ditangani</span>
               <span class="info-box-number">{{$penanganan}}</span>
             </div>
             <!-- /.info-box-content -->
@@ -83,7 +83,7 @@
             <span class="info-box-icon bg-aqua"><i class="fa fa-briefcase"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Pekerjaan</span>
+              <span class="info-box-text">Jumlah Pekerjaan</span>
               <span class="info-box-number">{{$pekerjaan}}</span>
             </div>
             <!-- /.info-box-content -->
@@ -96,7 +96,7 @@
             <span class="info-box-icon bg-red"><i class="fa fa-building"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">OPD</span>
+              <span class="info-box-text">Jumlah OPD</span>
               <span class="info-box-number">{{$opd}}</span>
             </div>
             <!-- /.info-box-content -->
