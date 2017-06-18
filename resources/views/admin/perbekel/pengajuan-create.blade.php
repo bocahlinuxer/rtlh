@@ -86,7 +86,7 @@
 
           <!-- text input -->
           <div class="form-group {{ $errors->has('jumlah_tanggungan') ? ' has-error' : '' }}">
-            <label class="control-label" for="jumlah_tanggungan">Jumlah Tanggungan</label>
+            <label class="control-label" for="jumlah_tanggungan">Jumlah Tanggungan (Orang)</label>
             <input type="number" class="form-control" id="jumlah_tanggungan" name="jumlah_tanggungan" required="true" value="{{old('jumlah_tanggungan')}}">
             @if ($errors->has('jumlah_tanggungan'))
             <span class="help-block">
@@ -98,7 +98,7 @@
 
           <!-- text input -->
           <div class="form-group {{ $errors->has('penghasilan') ? ' has-error' : '' }}">
-            <label class="control-label" for="penghasilan">Penghasilan</label>
+            <label class="control-label" for="penghasilan">Penghasilan (Rp)</label>
             <input type="number" class="form-control" id="penghasilan" name="penghasilan" required="true" value="{{old('penghasilan')}}">
             @if ($errors->has('penghasilan'))
             <span class="help-block">
@@ -110,7 +110,7 @@
 
           <!-- text input -->
           <div class="form-group {{ $errors->has('luas_rumah') ? ' has-error' : '' }}">
-            <label class="control-label" for="luas_rumah">Luas Rumah</label>
+            <label class="control-label" for="luas_rumah">Luas Rumah (M<sup>2<sup>)</label>
             <input type="number" class="form-control" id="luas_rumah" name="luas_rumah" required="true" value="{{old('luas_rumah')}}">
             @if ($errors->has('luas_rumah'))
             <span class="help-block">

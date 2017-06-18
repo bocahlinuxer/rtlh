@@ -48,13 +48,13 @@
                     <td>{{ $r -> desa -> kecamatan -> kecamatan.', '.$r -> desa -> desa}}</td>
                     <td>
                       @if($r -> status == 1)
-                      Usulan
+                      Diusulkan
                       @elseif($r -> status == 2)
-                      Verifikasi
+                      Terverifikasi
                       @elseif($r -> status == 3)
-                      Program
+                      Mendapat Penanganan
                       @elseif($r -> status == 4)
-                      Publish
+                      Sudah Publikasi
                       @endif
                     </td>
                     <td align="center">
@@ -64,7 +64,7 @@
                         <a type="button" class="btn btn-success" href="{{url('adminkepala/rtlh/'.$r->id_rtlh.'/program')}}"><i class="fa fa-wrench"> Penanganan</i></a>
                         @endif
                         @if($r->status == 3)
-                        <a type="button" class="btn btn-warning" href="{{url('adminkepala/publikasi/'.$r->id_rtlh.'/penanganan')}}"><i class="fa fa-map-marker"> Publikasi</i></a>
+                        <a type="button" class="btn btn-warning" href="{{url('adminkepala/rtlh/'.$r->id_rtlh.'/publish')}}"><i class="fa fa-map-marker"> Publikasi</i></a>
                         @endif
                       </div>
                     </td>
@@ -79,6 +79,7 @@
                     <th>No</th>
                     <th>Nik</th>
                     <th>Nama</th>
+                    <th>Pekerjaan</th>
                     <th>Alamat</th>
                     <th>Daerah</th>
                     <th>Status</th>

@@ -14,7 +14,7 @@ class Rtlh extends Model
 
     public static $rules = array(
         'nama' => 'required|max:100',
-        'nik' => 'required|max:20',
+        'nik' => 'required|max:20|numeric',
         'alamat' => 'required|max:100',
         'jumlah_tanggungan' => 'required|integer',
         'penghasilan' => 'required|integer',
@@ -26,8 +26,8 @@ class Rtlh extends Model
         'utilitas_air' => 'required|integer',
         'utilitas_mck' => 'required|integer',
         'bukti' => 'required|integer',
-        'latitude' => 'required',
-        'longitude' => 'required',
+        'latitude' => 'numeric',
+        'longitude' => 'numeric',
         'data_lainnya' => 'max:255'
     );
 

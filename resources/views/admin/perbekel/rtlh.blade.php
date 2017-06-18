@@ -48,13 +48,13 @@
                     <td>{{ $r -> desa -> kecamatan -> kecamatan.', '.$r -> desa -> desa}}</td>
                     <td>
                       @if($r -> status == 1)
-                      Usulan
+                      Diusulkan
                       @elseif($r -> status == 2)
-                      Verifikasi
+                      Terverifikasi
                       @elseif($r -> status == 3)
-                      Program
+                      Mendapat Penanganan
                       @elseif($r -> status == 4)
-                      Publish
+                      Sudah Publikasi
                       @endif
                     </td>
                     <td align="center">
@@ -73,6 +73,7 @@
                     <th>No</th>
                     <th>Nik</th>
                     <th>Nama</th>
+                    <th>Pekerjaan</th>
                     <th>Alamat</th>
                     <th>Daerah</th>
                     <th>Status</th>

@@ -130,6 +130,9 @@
                         beginAtZero:true
                     }
                 }]
+            },
+            legend: {
+              display: false
             }
         }
     });

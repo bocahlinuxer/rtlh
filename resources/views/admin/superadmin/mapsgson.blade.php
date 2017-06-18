@@ -58,9 +58,9 @@
 
     var MarkerIcon = L.Icon.extend({
         options: {
-            iconSize:     [42, 42],
-            iconAnchor:   [21, 42],
-            popupAnchor:  [0, -36]
+            iconSize:     [30, 30],
+            iconAnchor:   [15, 30],
+            popupAnchor:  [0, -24]
         }
     });
 
@@ -132,12 +132,7 @@
       // add GeoJSON layer to the map once the file is loaded
       var desa = L.geoJson(data, {
         style: function(feature){
-          var letters = '0123456789ABCDEF';
-          var color = '#';
-          for (var i = 0; i < 6; i++ ) {
-              color += letters[Math.floor(Math.random() * 16)];
-          }
-          return { color: color, weight: 1, fillColor: color, fillOpacity: 0 };
+          return { color: '#F22', weight: 1, fillColor: color, fillOpacity: 0 };
         },
         onEachFeature: function( feature, layer ){
           layer.bindPopup(
