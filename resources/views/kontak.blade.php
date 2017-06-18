@@ -1,7 +1,5 @@
 @extends('template')
 @section('content')
-<!-- DataTables -->
-<link rel="stylesheet" href="{{asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -15,72 +13,68 @@
       </ol>
     </section>
 
-    {{-- <!-- Main content -->
-    <section class="content">
+    <!-- Main content -->
+    <section class="invoice">
+      <!-- title row -->
       <div class="row">
-        <div class="col-md-12">
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Rumah</th>
-                    <th>Kecamatan</th>
-                    <th>Desa</th>
-                    <th>Foto 0%</th>
-                    <th>Foto 100%</th>
-                    <th>OPD</th>
-                  </tr>
-                </thead>
-                <tbody>
-                @php
-                  $no = 1;
-                @endphp
-                @foreach($rtlh as $p)
-                  <tr>
-                    <td>{{ $no }}</td>
-                    <td>{{ $p->nama }}</td>
-                    <td>{{ $p->desa->kecamatan->kecamatan }}</td>
-                    <td>{{ $p->desa->desa }}</td>
-                    <td><img src="{{asset('img/penanganan/'.$p-> foto0)}}" class="img-responsive" style="max-width: 150px"></td>
-                    <td><img src="{{asset('img/penanganan/'.$p-> foto100)}}" class="img-responsive" style="max-width: 150px"></td>
-                    <td>{{ $p -> opd -> opd or ''}}</td>
-                  </tr>
-                @php
-                  $no++;
-                @endphp
-                @endforeach
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>No</th>
-                    <th>Rumah</th>
-                    <th>Kecamatan</th>
-                    <th>Desa</th>
-                    <th>Foto 0%</th>
-                    <th>Foto 100%</th>
-                    <th>OPD</th>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> DINAS PERUMAHAN DAN KAWASAN PERMUKIMAN KABUPATEN KARANGASEM
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+          <b>Kantor</b>
+          <address>
+            Alamat: Jln. Ngurah Rai No 21 Amlapura<br>
+            Telp/Fax: (0363) 21146/22035
+          </address>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Jabatan</th>
+              <th>Nama</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Kepala Dinas Perumahan Dan Kawasan Pemukiman</td>
+              <td>I Made Suama, SH.</td>
+            </tr>
+            <tr>
+              <td>Kepala Bidang Perumahan</td>
+              <td>I Ketut Jaya Putra, ST.,MT.</td>
+            </tr>
+            <tr>
+              <td>Kepala Seksi Perencanaan dan Pengawasan Perumahan</td>
+              <td>Ni Kadek Noviyati, ST.</td>
+            </tr>
+            <tr>
+              <td>Kepala Seksi  Peningkatan Kualitas Perumahan</td>
+              <td>I Wayan Sada, SE.</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
-    <!-- /.content --> --}}
+    <!-- /.content -->
+    <div class="clearfix"></div>
   </div>
   <!-- /.content-wrapper -->
-
-<!-- DataTables -->
-<script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('assets/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 
 <script>
   $(function () {
