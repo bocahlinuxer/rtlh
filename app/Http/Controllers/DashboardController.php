@@ -48,7 +48,7 @@ class DashboardController extends Controller
 
     public function indexverifikasi()
     {
-        return redirect('adminperbekel/verifikasi');
+        return redirect('adminverifikasi/verifikasi');
         return view('admin.verifikasi.dashboard');
     }
 
