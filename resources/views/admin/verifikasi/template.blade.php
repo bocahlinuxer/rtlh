@@ -73,12 +73,12 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MENU</li>
+        {{-- <li class="header">MENU</li>
         <li id="beranda-menu">
           <a href="{{url('adminverifikasi/')}}">
             <i class="fa fa-dashboard"></i> <span>Beranda</span>
           </a>
-        </li>
+        </li> --}}
         <li class="header">RTLH</li>
         
         <li id="verifikasi-menu">

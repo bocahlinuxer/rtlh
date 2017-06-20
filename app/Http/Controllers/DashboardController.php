@@ -42,11 +42,13 @@ class DashboardController extends Controller
 
     public function indexperbekel()
     {
+        return redirect('adminperbekel/rtlh');
         return view('admin.perbekel.dashboard');
     }
 
     public function indexverifikasi()
     {
+        return redirect('adminperbekel/verifikasi');
         return view('admin.verifikasi.dashboard');
     }
 
