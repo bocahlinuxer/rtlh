@@ -14,7 +14,7 @@ class Rtlh extends Model
 
     public static $rules = array(
         'nama' => 'required|max:100',
-        'nik' => 'required|max:20|numeric',
+        'nik' => 'required|digits:20',
         'alamat' => 'required|max:100',
         'jumlah_tanggungan' => 'required|integer',
         'penghasilan' => 'required|integer',
