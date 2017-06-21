@@ -14,7 +14,7 @@ class Rtlh extends Model
 
     public static $rules = array(
         'nama' => 'required|max:100',
-        'nik' => 'required|digits:20',
+        'nik' => 'required|digits_between:1,20',
         'alamat' => 'required|max:100',
         'jumlah_tanggungan' => 'required|integer',
         'penghasilan' => 'required|integer',
@@ -26,10 +26,15 @@ class Rtlh extends Model
         'utilitas_air' => 'required|integer',
         'utilitas_mck' => 'required|integer',
         'bukti' => 'required|integer',
-        'latitude' => 'numeric',
-        'longitude' => 'numeric',
         'data_lainnya' => 'max:255'
     );
+
+    public static $messages = [
+        'required'  => ':attribute harus isi.',
+        'size'      => 'The :attribute must be exactly :size.',
+        'between'   => 'The :attribute must be between :min - :max.',
+        'in'        => 'The :attribute must be one of the following types: :values',
+    ];
 
     public function pekerjaan()
     {

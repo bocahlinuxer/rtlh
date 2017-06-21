@@ -215,7 +215,7 @@
               <h3 class="box-title">
                 Foto RTLH
               </h3>
-              {{-- <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a> --}}
+              <a type="button" class="btn btn-primary pull-right" style="margin-top: -5px" href="{{url('adminverifikasi/verifikasi/'.$rtlh->id_rtlh.'/fotortlh/create')}}"><i class="fa fa-plus"> Tambah Foto</i></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -226,7 +226,7 @@
                     <th>Foto</th>
                     <th>Tgl Input</th>
                     <th>Tgl Ubah</th>
-                    {{-- <th style="width: 10%">Opsi</th> --}}
+                    <th style="width: 10%">Opsi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -239,14 +239,14 @@
                     <td><img src="{{asset('img/rtlh/'.$u-> file_fotortlh)}}" class="img-responsive" style="max-height: 300px"></td>
                     <td>{{ $u -> created_at or ''}}</td>
                     <td>{{ $u -> updated_at or ''}}</td>
-                    {{-- <td align="center">
+                    <td align="center">
                       <div class="btn-group-vertical">
-                        <a type="button" class="btn btn-default" href="{{url('admin/pengajuan/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
-                        {!! Form::open(array('url' => 'pengajuan/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh, 'method' => 'delete')) !!}
+                        <a type="button" class="btn btn-default" href="{{url('adminverifikasi/verifikasi/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh.'/edit')}}"><i class="fa fa-edit"> Ubah</i></a>
+                        {!! Form::open(array('url' => 'adminverifikasi/verifikasi/'.$rtlh->id_rtlh.'/fotortlh/'.$u->id_fotortlh, 'method' => 'delete')) !!}
                             <button type="submit" onclick="return confirm('Apakah anda yakin menghapus data?');" class="btn btn-danger"><i class="fa fa-trash-o"> Hapus</i></button>
                         {!! Form::close() !!}
                       </div>
-                    </td> --}}
+                    </td>
                   </tr>
                 @php
                   $no++;
@@ -259,6 +259,7 @@
                     <th>Foto</th>
                     <th>Tgl Input</th>
                     <th>Tgl Ubah</th>
+                    <th style="width: 10%">Opsi</th>
                   </tr>
                 </tfoot>
               </table>

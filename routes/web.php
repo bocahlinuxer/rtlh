@@ -67,6 +67,11 @@ Route::group(['prefix' => 'adminverifikasi', 'middleware' => ['auth', 'adminveri
 
 	Route::get('verifikasi', 'VerifikasiController@index');
 	Route::get('verifikasi/{id}', 'VerifikasiController@detail');
+
+	Route::resource('verifikasi/{idrtlh}/fotortlh', 'VerifikasiFotoController', ['except' => [
+	    'index', 'show'
+	]]);
+
 	Route::get('verifikasi/{id}/crosscheck', 'VerifikasiController@crosscheck');
 	Route::put('verifikasi/{id}/verify', 'VerifikasiController@verifikasi');
 	Route::get('terverifikasi', 'VerifikasiController@sudah');
