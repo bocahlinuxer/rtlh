@@ -110,7 +110,7 @@
 
           <!-- text input -->
           <div class="form-group {{ $errors->has('luas_rumah') ? ' has-error' : '' }}">
-            <label class="control-label" for="luas_rumah">Luas Rumah (M<sup>2<sup>)</label>
+            <label class="control-label" for="luas_rumah">Luas Rumah (M<sup>2</sup>)</label>
             <input type="number" class="form-control" id="luas_rumah" name="luas_rumah" required="true" value="{{old('luas_rumah')}}">
             @if ($errors->has('luas_rumah'))
             <span class="help-block">
