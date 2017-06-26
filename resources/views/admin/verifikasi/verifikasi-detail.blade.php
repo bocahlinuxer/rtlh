@@ -189,6 +189,18 @@
               <br>
 
               <br>
+              <strong>Jenis Penanganan</strong>
+              <br>
+              &nbsp {{$rtlh->jenis_penanganan or 'Tidak Ada'}}
+              <br>
+
+              <br>
+              <strong>Sumber Data</strong>
+              <br>
+              &nbsp {{$rtlh->sumber_data or 'Tidak Ada'}}
+              <br>
+
+              <br>
               <strong>Status</strong>
               <br>
               @if($rtlh->status == 1)

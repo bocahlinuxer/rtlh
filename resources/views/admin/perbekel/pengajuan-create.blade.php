@@ -277,6 +277,30 @@
           <!-- text input -->
 
           <!-- text input -->
+          <div class="form-group {{ $errors->has('jenis_penanganan') ? ' has-error' : '' }}">
+            <label class="control-label" for="jenis_penanganan">Jenis Penanganan</label>
+            <input type="text" class="form-control" id="jenis_penanganan" name="jenis_penanganan" maxlength="255" value="{{old('jenis_penanganan')}}">
+            @if ($errors->has('jenis_penanganan'))
+            <span class="help-block">
+                <strong>{{ $errors->first('jenis_penanganan') }}</strong>
+            </span>
+            @endif
+          </div>
+          <!-- text input -->
+
+          <!-- text input -->
+          <div class="form-group {{ $errors->has('sumber_data') ? ' has-error' : '' }}">
+            <label class="control-label" for="sumber_data">Sumber Data</label>
+            <input type="text" class="form-control" id="sumber_data" name="sumber_data" maxlength="255" value="{{old('sumber_data')}}">
+            @if ($errors->has('sumber_data'))
+            <span class="help-block">
+                <strong>{{ $errors->first('sumber_data') }}</strong>
+            </span>
+            @endif
+          </div>
+          <!-- text input -->
+
+          <!-- text input -->
           <div class="form-group {{ $errors->has('data_lainnya') ? ' has-error' : '' }}">
             <label class="control-label" for="data_lainnya">Data Lainnya</label>
             <input type="text" class="form-control" id="data_lainnya" name="data_lainnya" maxlength="255" value="{{old('data_lainnya')}}">

@@ -26,6 +26,8 @@ class Rtlh extends Model
         'utilitas_air' => 'required|integer',
         'utilitas_mck' => 'required|integer',
         'bukti' => 'required|integer',
+        'jenis_penanganan' => 'max:255',
+        'sumber_data' => 'max:255',
         'data_lainnya' => 'max:255'
     );
 

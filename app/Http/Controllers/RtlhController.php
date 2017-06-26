@@ -106,6 +106,8 @@ class RtlhController extends Controller
         $rtlh->bukti = $request->bukti;
         $rtlh->latitude = $request->latitude;
         $rtlh->longitude = $request->longitude;
+        $rtlh->jenis_penanganan = $request->jenis_penanganan;
+        $rtlh->sumber_data = $request->sumber_data;
         $rtlh->data_lainnya = $request->data_lainnya;
         $rtlh->status = 1;
 
@@ -220,6 +222,8 @@ class RtlhController extends Controller
         $rtlh->bukti = $request->bukti;
         $rtlh->latitude = $request->latitude;
         $rtlh->longitude = $request->longitude;
+        $rtlh->jenis_penanganan = $request->jenis_penanganan;
+        $rtlh->sumber_data = $request->sumber_data;
         $rtlh->data_lainnya = $request->data_lainnya;
 
         //set created by
