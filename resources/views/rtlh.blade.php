@@ -92,7 +92,26 @@
   $(function () {
     $('#rtlh-menu').addClass('active');
 
-    $("#example1").DataTable();
+    var table = $('#example1').DataTable();
+ 
+    // Setup - add a text input to each footer cell
+    $('#example1 tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" class="form-control" placeholder="Search '+title+'" />' );
+    } );
+
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
   });
 </script>
 @endsection

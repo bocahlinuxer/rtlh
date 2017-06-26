@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Rtlh;
+use App\FotoRtlh;
 
 class FEController extends Controller
 {
@@ -16,10 +17,17 @@ class FEController extends Controller
     {
         $rtlh = Rtlh::whereNotNull('publish_at')->count();
         $penanganan = Rtlh::whereNotNull('publish_at')->where('status', 3)->count();
+        $slideshow = FotoRtlh::whereHas('rtlh', function($query){
+                        $query->whereNotNull('publish_at');  
+                    })->inRandomOrder()->take(5)->get();
+
+        $slideshow2 = Rtlh::whereNotNull('publish_at')->inRandomOrder()->take(5)->get(array('foto100'));
 
         return view('dashboard')->with(array(
             'rtlh' => $rtlh,
-            'penanganan' => $penanganan
+            'penanganan' => $penanganan,
+            'slideshow' => $slideshow,
+            'slideshow2' => $slideshow2
             ));
     }
 
