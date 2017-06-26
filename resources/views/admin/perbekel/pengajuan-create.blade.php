@@ -290,7 +290,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <a type="button" class="btn btn-danger" href="{{url('adminperbekel/user')}}">Kembali</a>
+          <a type="button" class="btn btn-danger" href="{{url('adminperbekel/pengajuan')}}">Kembali</a>
           <button type="submit" class="btn btn-primary pull-right">Simpan</button>
         </div>
       </div>
