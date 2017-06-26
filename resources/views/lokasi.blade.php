@@ -53,19 +53,26 @@
       $.each(data, function(key, value){
         if(value.status == 1)
         {
-          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: redIcon}).bindPopup(value.nama));
+          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: redIcon})
+            .bindPopup('<a href="{{url('rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
         } else if(value.status == 2)
         {
-          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: blueIcon}).bindPopup(value.nama));
+          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: blueIcon})
+            .bindPopup('<a href="{{url('rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
         } else if(value.status == 3)
         {
-          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: greenIcon}).bindPopup(value.nama));
+          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: greenIcon})
+            .bindPopup('<a href="{{url('rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
         } else if(value.status == 4)
         {
-          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: yellowIcon}).bindPopup(value.nama));
+          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: yellowIcon})
+            .bindPopup('<a href="{{url('rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
         }
       });
-      control.addOverlay(L.layerGroup(markers), "RTLH");
+
+      var layerGroup = L.layerGroup(markers);
+      layerGroup.addTo(map);
+      control.addOverlay(layerGroup, "RTLH");
     });
   });
 </script>
