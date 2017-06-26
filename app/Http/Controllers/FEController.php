@@ -14,8 +14,8 @@ class FEController extends Controller
      */
     public function index()
     {
-        $rtlh = Rtlh::where('status', 4)->count();
-        $penanganan = Rtlh::whereNotNull('penanganan_by')->count();
+        $rtlh = Rtlh::whereNotNull('publish_at')->count();
+        $penanganan = Rtlh::whereNotNull('publish_at')->where('status', 3)->count();
 
         return view('dashboard')->with(array(
             'rtlh' => $rtlh,
@@ -52,7 +52,7 @@ class FEController extends Controller
                     $q->select('id_kecamatan', 'kecamatan');
                 }
             ]
-        )->where('status', 4)->get();
+        )->whereNotNull('publish_at')->get();
         
         return view('rtlh')->with('rtlh', $rtlh);
     }
@@ -91,7 +91,7 @@ class FEController extends Controller
                     $q->select('id_opd', 'opd');
                 },
             ]
-        )->find($id);
+        )->whereNotNull('publish_at')->find($id);
     
         return view('rtlh-detail')->with('rtlh', $rtlh);
     }
@@ -113,7 +113,7 @@ class FEController extends Controller
                     $q->select('id_opd', 'opd');
                 }
             ]
-        )->where('status', 4)->get();
+        )->where('status', 3)->whereNotNull('publish_at')->get();
 
         return view('program')->with('rtlh', $rtlh);
     }

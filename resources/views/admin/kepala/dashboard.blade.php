@@ -18,62 +18,66 @@
     <section class="content">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-home"></i></span>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-light-blue">
+            <div class="inner">
+              <h3>{{$rtlh}}</h3>
 
-            <div class="info-box-content">
-              <span class="info-box-text">RTLH Keseluruhan</span>
-              <span class="info-box-number">{{$rtlh}}</span>
+              <p>RTLH Keseluruhan</p>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-upload"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Usulan RTLH</span>
-              <span class="info-box-number">{{$usulan}}</span>
+            <div class="icon">
+              <i class="fa fa-home"></i>
             </div>
-            <!-- /.info-box-content -->
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{$usulan}}</h3>
 
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-check"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">RTLH Terverifikasi</span>
-              <span class="info-box-number">{{$verifikasi}}</span>
+              <p>Usulan RTLH</p>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-wrench"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">RTLH Ditangani</span>
-              <span class="info-box-number">{{$penanganan}}</span>
+            <div class="icon">
+              <i class="fa fa-upload"></i>
             </div>
-            <!-- /.info-box-content -->
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>{{$verifikasi}}</h3>
+
+              <p>RTLH Terverifikasi</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-check"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{$penanganan}}</h3>
+
+              <p>RTLH Ditangani</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-wrench"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
       </div>
       <!-- /.row -->
 

@@ -15,34 +15,37 @@
     <section class="content">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-home"></i></span>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{$rtlh}}</h3>
 
-            <div class="info-box-content">
-              <span class="info-box-text">RTLH</span>
-              <span class="info-box-number">{{$rtlh}}</span>
+              <p>RTLH</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+              <i class="fa fa-home"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-wrench"></i></span>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>{{$penanganan}}</h3>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Penanganan</span>
-              <span class="info-box-number">{{$penanganan}}</span>
+              <p>Penanganan</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+              <i class="fa fa-wrench"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
+        <!-- ./col -->
       </div>
-      <!-- /.row -->
 
       {{-- <div class="row">
         <div class="col-md-12">
