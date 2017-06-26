@@ -129,8 +129,6 @@ class PenangananController extends Controller
         //buat variable user
         $rtlh = Rtlh::find($id);
 
-        $rtlh->status = 4;
-
         //set created by
         $rtlh->publish_at = Carbon::now();
         $rtlh->published_by_user()->associate($userlogin);

@@ -125,7 +125,7 @@ class FEController extends Controller
 
     public function ajax_rumah()
     {
-        $rumah = Rtlh::where('status', 4)->get();
+        $rumah = Rtlh::whereNotNull('publish_at')->get();
 
         return json_encode($rumah);
     }

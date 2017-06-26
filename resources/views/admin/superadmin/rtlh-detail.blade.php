@@ -213,8 +213,16 @@
               &nbsp Verifikasi
               @elseif($rtlh->status == 3)
               &nbsp Program
-              @elseif($rtlh->status == 4)
-              &nbsp Publish
+              @endif
+              <br>
+
+              <br>
+              <strong>Publikasi</strong>
+              <br>
+              @if($rtlh->publish_at != null)
+              &nbsp Sudah
+              @else
+              &nbsp Belum
               @endif
               <br>
             </div>

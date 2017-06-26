@@ -8,16 +8,19 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        @if($rtlh->status == 2)
-        Detail Rumah Tidak Layak Huni
-        <a class="btn btn-success pull-right" href="{{url('adminkepala/rtlh/'.$rtlh->id_rtlh.'/program')}}"><i class="fa fa-wrench"> Penanganan</i></a>
-        @elseif($rtlh->status == 3)
+        @if(($rtlh->status == 2 || $rtlh->status == 3) && $rtlh->publish_at == null)
         {!! Form::open(array('url' => 'adminkepala/rtlh/'.$rtlh->id_rtlh.'/publish', 'method' => 'put')) !!}
         Detail Rumah Tidak Layak Huni
         <button type="submit" onclick="return confirm('Apakah anda yakin publish data?');" class="btn btn-warning pull-right"><i class="fa fa-map-marker"> Publikasi</i></button>
+          @if($rtlh->status == 2)
+          <a class="btn btn-success pull-right" style="margin-right: 10px" href="{{url('adminkepala/rtlh/'.$rtlh->id_rtlh.'/program')}}"><i class="fa fa-wrench"> Penanganan</i></a>
+          @endif
         {!! Form::close() !!}
         @else
         Detail Rumah Tidak Layak Huni
+          @if($rtlh->status == 2)
+          <a class="btn btn-success pull-right" href="{{url('adminkepala/rtlh/'.$rtlh->id_rtlh.'/program')}}"><i class="fa fa-wrench"> Penanganan</i></a>
+          @endif
         @endif
       </h1>
     </section>
@@ -198,8 +201,16 @@
               &nbsp Verifikasi
               @elseif($rtlh->status == 3)
               &nbsp Program
-              @elseif($rtlh->status == 4)
-              &nbsp Publish
+              @endif
+              <br>
+
+              <br>
+              <strong>Publikasi</strong>
+              <br>
+              @if($rtlh->publish_at != null)
+              &nbsp Sudah
+              @else
+              &nbsp Belum
               @endif
               <br>
             </div>

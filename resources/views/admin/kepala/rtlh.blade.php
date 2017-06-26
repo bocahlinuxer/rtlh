@@ -31,6 +31,7 @@
                     <th>Alamat</th>
                     <th>Daerah</th>
                     <th>Status</th>
+                    <th>Publikasi</th>
                     <th style="width: 10%">Opsi</th>
                   </tr>
                 </thead>
@@ -53,8 +54,13 @@
                       Terverifikasi
                       @elseif($r -> status == 3)
                       Mendapat Penanganan
-                      @elseif($r -> status == 4)
-                      Sudah Publikasi
+                      @endif
+                    </td>
+                    <td>
+                      @if($r -> publish_at != null)
+                      Publikasi
+                      @else
+                      Belum
                       @endif
                     </td>
                     <td align="center">
@@ -62,9 +68,6 @@
                         <a type="button" class="btn btn-default" href="{{url('adminkepala/rtlh/'.$r->id_rtlh)}}"><i class="fa fa-eye"> Detail</i></a>
                         @if($r->status == 2)
                         <a type="button" class="btn btn-success" href="{{url('adminkepala/rtlh/'.$r->id_rtlh.'/program')}}"><i class="fa fa-wrench"> Penanganan</i></a>
-                        @endif
-                        @if($r->status == 3)
-                        <a type="button" class="btn btn-warning" href="{{url('adminkepala/rtlh/'.$r->id_rtlh.'/publish')}}"><i class="fa fa-map-marker"> Publikasi</i></a>
                         @endif
                       </div>
                     </td>
@@ -83,6 +86,7 @@
                     <th>Alamat</th>
                     <th>Daerah</th>
                     <th>Status</th>
+                    <th>Publikasi</th>
                     <th style="width: 10%">Opsi</th>
                   </tr>
                 </tfoot>
