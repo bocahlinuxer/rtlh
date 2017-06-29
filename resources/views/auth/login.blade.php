@@ -123,7 +123,8 @@
       if(user.tipe == 2)
       {
         $('#modalBody').html("");
-        $('#modalBody').html("dengan ini, apakah <b>"+user.nama+"</b> sebagai perbekel desa <b>"+user.desa+"</b> menyetujui untuk mengisi data RTLH di desa <b>"+user.desa+"</b>?");
+        //$('#modalBody').html("dengan ini, apakah <b>"+user.nama+"</b> sebagai perbekel desa <b>"+user.desa+"</b> menyetujui untuk mengisi data RTLH di desa <b>"+user.desa+"</b>?");
+        $('#modalBody').html("Saya yang memiliki akun, dengan ini menyatakan bahwa saya : <br><br> 1. Tidak akan melakukan praktek KKN;<br> 2. Akan melaporkan kepada pihak yang berwajib/berwenang apabila mengetahui ada indikasi KKN di dalam proses pendataan dan program penanganan RTLH ini;<br> 3. Dalam proses pendataan akan memberikan data yang sebenarnya dan memang membutuhkan bantuan sesuai ketentuan/ dalam proses verifikasi akan melakukan verifikasi sesuai dengan ketentuan dan kenyataan di lapangan;<br> 4. Apabila saya melanggar hal-hal yang telah saya nyatakan dalam FAKTA INTEGRITAS ini, saya bersedia dikenakan  sanksi moral, sanksi administrasi, serta dituntut ganti rugi dan pidana sesuai dengan ketentuan peraturan perundang-undangan yang berlaku.");
         $('#myModal').modal('show');
       }
       else
@@ -132,6 +133,8 @@
       }
     });
   }
+
+  
 
   function meong()
   {
