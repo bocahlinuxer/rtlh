@@ -51,22 +51,25 @@
     $.getJSON("{{url('superadmin/ajax/rumah')}}",function(data){
       var markers = [];
       $.each(data, function(key, value){
-        if(value.status == 1)
+        if(value.latitude != null && value.longitude != null)
         {
-          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: redIcon})
-            .bindPopup('<a href="{{url('superadmin/rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
-        } else if(value.status == 2)
-        {
-          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: blueIcon})
-            .bindPopup('<a href="{{url('superadmin/rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
-        } else if(value.status == 3)
-        {
-          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: greenIcon})
-            .bindPopup('<a href="{{url('superadmin/rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
-        } else if(value.status == 4)
-        {
-          markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: yellowIcon})
-            .bindPopup('<a href="{{url('superadmin/rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
+          if(value.status == 1)
+          {
+            markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: redIcon})
+              .bindPopup('<a href="{{url('superadmin/rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
+          } else if(value.status == 2)
+          {
+            markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: blueIcon})
+              .bindPopup('<a href="{{url('superadmin/rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
+          } else if(value.status == 3)
+          {
+            markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: greenIcon})
+              .bindPopup('<a href="{{url('superadmin/rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
+          } else if(value.status == 4)
+          {
+            markers.push(L.marker([parseFloat(value.latitude), parseFloat(value.longitude)], {icon: yellowIcon})
+              .bindPopup('<a href="{{url('superadmin/rtlh')}}/'+value.id_rtlh+'">'+value.nama+'</a>'));
+          }
         }
       });
       var layerGroup = L.layerGroup(markers);
