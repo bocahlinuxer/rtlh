@@ -363,19 +363,34 @@
   $(function () {
     $('#verifikasi-menu').addClass('active');
 
-    marker = L.marker([parseFloat("{{$rtlh->latitude}}"), parseFloat("{{$rtlh->longitude}}")], {icon: redIcon, draggable: true}).bindPopup("{{$rtlh->nama}}");
-    marker.on('drag', function(e) {
-      latitude.val(e.target.getLatLng().lat);
-      longitude.val(e.target.getLatLng().lng);
-    });
-    marker.addTo(map);
+    if(latitude.val() != "" && longitude.val() != "")
+    {
+      marker = L.marker([parseFloat("{{$rtlh->latitude}}"), parseFloat("{{$rtlh->longitude}}")], {icon: redIcon, draggable: true}).bindPopup("{{$rtlh->nama}}");
+      marker.on('drag', function(e) {
+        latitude.val(e.target.getLatLng().lat);
+        longitude.val(e.target.getLatLng().lng);
+      });
+      marker.addTo(map);
+    }
   });
 
   function checklatlong()
   {
     if(latitude.val() != "" && longitude.val() != "")
     {
-      marker.setLatLng([parseFloat(latitude.val()), parseFloat(longitude.val())]);
+      if(marker == null)
+      {
+        marker = L.marker([parseFloat(latitude.val()), parseFloat(longitude.val())], {icon: redIcon, draggable: true}).bindPopup("{{$rtlh->nama}}");
+        marker.on('drag', function(e) {
+          latitude.val(e.target.getLatLng().lat);
+          longitude.val(e.target.getLatLng().lng);
+        });
+        marker.addTo(map);
+      }
+      else
+      {
+        marker.setLatLng([parseFloat(latitude.val()), parseFloat(longitude.val())]);
+      }
     }
   }
 </script>

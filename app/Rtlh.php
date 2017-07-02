@@ -26,6 +26,29 @@ class Rtlh extends Model
         'utilitas_air' => 'required|integer',
         'utilitas_mck' => 'required|integer',
         'bukti' => 'required|integer',
+        'latitude' => 'nullable|numeric',
+        'longitude' => 'nullable|numeric',
+        'jenis_penanganan' => 'max:255',
+        'sumber_data' => 'max:255',
+        'data_lainnya' => 'max:255'
+    );
+
+    public static $verifikasirules = array(
+        'nama' => 'required|max:100',
+        'nik' => 'required|digits_between:1,20',
+        'alamat' => 'required|max:100',
+        'jumlah_tanggungan' => 'required|integer',
+        'penghasilan' => 'required|integer',
+        'luas_rumah' => 'required',
+        'kondisi_lantai' => 'required|integer',
+        'kondisi_dinding' => 'required|integer',
+        'kondisi_atap' => 'required|integer',
+        'utilitas_listrik' => 'required|integer',
+        'utilitas_air' => 'required|integer',
+        'utilitas_mck' => 'required|integer',
+        'bukti' => 'required|integer',
+        'latitude' => 'required|numeric',
+        'longitude' => 'required|numeric',
         'jenis_penanganan' => 'max:255',
         'sumber_data' => 'max:255',
         'data_lainnya' => 'max:255'

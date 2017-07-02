@@ -123,10 +123,7 @@ class VerifikasiController extends Controller
 
     public function verifikasi(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), array(
-            "latitude" => 'required|numeric',
-            "longitude" => 'required|numeric'
-            ));
+        $validator = Validator::make($request->all(), Rtlh::$verifikasirules);
 
         if ($validator->fails()) {
             return redirect('adminverifikasi/verifikasi/'.$id.'/crosscheck')

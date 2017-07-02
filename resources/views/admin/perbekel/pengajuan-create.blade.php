@@ -255,7 +255,7 @@
           <!-- text input -->
           <div class="form-group {{ $errors->has('latitude') ? ' has-error' : '' }}">
             <label class="control-label" for="latitude">Latitude</label>
-            <input type="number" class="form-control" id="latitude" name="latitude" value="{{old('latitude')}}">
+            <input type="text" class="form-control" id="latitude" name="latitude" value="{{old('latitude')}}">
             @if ($errors->has('latitude'))
             <span class="help-block">
                 <strong>{{ $errors->first('latitude') }}</strong>
@@ -267,7 +267,7 @@
           <!-- text input -->
           <div class="form-group {{ $errors->has('longitude') ? ' has-error' : '' }}">
             <label class="control-label" for="longitude">Longitude</label>
-            <input type="number" class="form-control" id="longitude" name="longitude" value="{{old('longitude')}}">
+            <input type="text" class="form-control" id="longitude" name="longitude" value="{{old('longitude')}}">
             @if ($errors->has('longitude'))
             <span class="help-block">
                 <strong>{{ $errors->first('longitude') }}</strong>
